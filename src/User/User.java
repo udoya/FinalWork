@@ -1,6 +1,6 @@
-package Person;
+package User;
 
-public class Person {
+public class User {
     protected String name;
     protected int id;
     protected boolean isMaster = false;

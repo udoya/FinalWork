@@ -1,8 +1,8 @@
-package Person;
+package User;
 
 import java.util.HashMap;
 
-public class Customer extends Person {
+public class Customer extends User {
 
     HashMap<String, Integer> borrowedHashMap = new HashMap<String, Integer>();
     /* NOTE: key is the name of Products. value is the number of borrowing */
@@ -17,7 +17,7 @@ public class Customer extends Person {
 
         borrowedHashMap.put(product, existNum + borrowNum);
         // TODO: plz take error message when numPossession < (existNum + borrowNum)
-        // Maybe it should be System class's method?
+        // ???: Maybe it should be System class's method?
 
     }
 
