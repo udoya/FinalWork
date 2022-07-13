@@ -8,12 +8,16 @@ public class Product {
     protected TreeMap<Integer, Integer> numLendingTreeMap = new TreeMap<Integer, Integer>();
     /* NOTE: the key is ID who borrows, the value is number of borrowing */
 
-    void setName(String name) {
+    /* Constructor might be better */
+    public Product(String name, int numPossessions) {
         this.name = name;
+        this.numPossessions = numPossessions;
+        // TODO: TreeMap is not initialized yet.
     }
 
-    void setNumPossessions(int number) {
-        this.numPossessions = number;
+    void changeName(String name) {
+        this.name = name;
+        System.out.println("Product name changed to " + name);
     }
 
     void setLendTreeMap(int id, int number) {
