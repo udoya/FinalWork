@@ -8,6 +8,11 @@ public class Product {
     protected TreeMap<Integer, Integer> numLendingTreeMap = new TreeMap<Integer, Integer>();
     /* NOTE: the key is ID who borrows, the value is number of borrowing */
 
+    public Product(String name2, int numPossessions2) {
+        // it is called when a new product is created
+        // TODO: make this constructor
+    }
+
     void setName(String name) {
         this.name = name;
     }
