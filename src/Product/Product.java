@@ -40,7 +40,8 @@ public class Product {
         if (existNum + difNum >= 0) {
             numLendingTreeMap.put(id, existNum + difNum);
         } else {
-            // TODO: error;
+            // TODO: error setting
+
         }
     }
 }

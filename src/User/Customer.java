@@ -14,9 +14,10 @@ public class Customer extends User {
         } else {
             existNum = 0;
         }
-
         borrowedHashMap.put(product, existNum + borrowNum);
-        // TODO: plz take error message when numPossession < (existNum + borrowNum)
+
+        // TODO: error message when numPossession < (existNum + borrowNum)
+
         // ???: Maybe it should be System class's method?
 
     }
@@ -31,7 +32,8 @@ public class Customer extends User {
         }
 
         if (existNum < returnNum) {
-            // TODO: plz take error message
+            // TODO: error case
+
         }
 
         borrowedHashMap.put(product, existNum - returnNum);
