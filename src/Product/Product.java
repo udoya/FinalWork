@@ -5,15 +5,15 @@ import java.util.TreeMap;
 /*
  * Product class
  * - name: name of the product
- * - numPossessions: number of the products that are available
  * - numTotal: number of the products that are in the system
+ * - numAvailable: number of the products that are available
  * - numLendingTreeMap: Tree of the information that *who* is borrowing *how many* products
 //  * - price: price of the product
  */
 public class Product {
     protected String name;
     protected int numTotal;
-    protected int numPossessions;
+    protected int numAvailable;
     protected TreeMap<Integer, Integer> numLendingTreeMap = new TreeMap<Integer, Integer>();
     /* NOTE: the key is ID who borrows, the value is number of borrowing */
 
@@ -21,14 +21,14 @@ public class Product {
     /* TreeMap は最初何ももってないからこれでいい？ */
     /** コンストラクタ
      * @param name the name of the product
-     * @param numPossessions the number of the products
+     * @param numTotal the number of the products
      */
     public Product(String name, int numTotal) {
         this.name = name;
         this.numTotal = numTotal;
-        this.numPossessions = numTotal;
+        this.numAvailable = numTotal;
         // TODO: Print on the console the following message:
-        System.out.println("Product: " + name + " has been added as " + numPossessions + ".");
+        System.out.println("Product: " + name + " has been added as " + numAvailable + ".");
     }
 
     /* For Staff */
@@ -45,11 +45,11 @@ public class Product {
 
     /* For Staff */
     /** 在庫追加・削除
-     * @param difNum: a difference of the number of the products that are available
+     * @param difNum: amount of change
      */
-    void changeNumPossessions(int difNum) {
-        if (this.numPossessions + difNum >= 0) {
-            this.numPossessions += difNum;
+    void changenumAvailable(int difNum) {
+        if (this.numAvailable + difNum >= 0) {
+            this.numAvailable += difNum;
         } else {
             // TODO: error;
         }
@@ -61,8 +61,8 @@ public class Product {
      * @param num: the number of the products that are being borrowed
      */
     void borrowThis(int id, int num) {
-        if (this.numPossessions >= num) {
-            this.numPossessions -= num;
+        if (this.numAvailable >= num) {
+            this.numAvailable -= num;
             if (this.numLendingTreeMap.containsKey(id)) {
                 this.numLendingTreeMap.put(id, this.numLendingTreeMap.get(id) + num);
             } else {
@@ -75,7 +75,7 @@ public class Product {
         if (this.numLendingTreeMap.containsKey(id)) {
             if (this.numLendingTreeMap.get(id) >= num) {
                 this.numLendingTreeMap.put(id, this.numLendingTreeMap.get(id) - num);
-                this.numPossessions += num;
+                this.numAvailable += num;
             } else {
                 
             }
