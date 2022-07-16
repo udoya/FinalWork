@@ -81,38 +81,4 @@ public class Product {
             }
         }
     }
-
-    /** Use when a new customer borrows this product.
-     * @param id: ID of the customer
-     * @param num: the number of the products that the customer borrows
-     */
-    void setLendTreeMap(int id, int num) {
-        numLendingTreeMap.put(id, num);
-    }
-
-    /** Change the number of lending.
-     ** Use when a customer returns or borrows additionally.
-     * @param id: ID of the customer
-     * @param borrowNum: the number of borrowing (positive) or returning (negative)
-     */
-    void changeNumPossessions(int id, int borrowNum) {
-        final int currentNum;
-
-        if (numLendingTreeMap.containsKey(id)) {
-            currentNum = numLendingTreeMap.get(id);
-        } else {
-            currentNum = 0;
-        }
-
-        currentNum += borrowNum;
-
-        if (borrowNum > )
-        // if (currentNum + borrowNum >= 0) {
-        //     numLendingTreeMap.put(id, currentNum + borrowNum);
-        // } else {
-        //     // TODO: error setting
-
-
-        // }
-    }
 }
