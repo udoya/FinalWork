@@ -10,7 +10,7 @@ import java.util.TreeMap;
  * - numLendingTreeMap: Tree of the information that *who* is borrowing *how many* products
 //  * - price: price of the product
  */
-class Product {
+public class Product {
     String name;
     int numTotal;
     int numAvailable;
@@ -31,26 +31,25 @@ class Product {
         System.out.println("Product: " + name + " has been added as " + numAvailable + ".");
     }
 
-    /* ProductSystemからしかアクセスできないようにしちゃっていいかもね */
-    // String getName() {
-    //     return name;
-    // }
-    // int getNumTotal() {
-    //     return numTotal;
-    // }
-    // int getNumAvailable() {
-    //     return numAvailable;
-    // }
+    public String getName() {
+        return name;
+    }
+    public int getNumTotal() {
+        return numTotal;
+    }
+    public int getNumAvailable() {
+        return numAvailable;
+    }
 
-    // TreeMap<Integer, Integer> getLendingList() {
-    //     return numLendingTreeMap;
-    // }
-    // int getNumLending() {
-    //     return numTotal - numAvailable;
-    // }
-    // int getNumLending(int id) {
-    //     return numLendingTreeMap.get(id);
-    // }
+    public TreeMap<Integer, Integer> getLendingList() {
+        return numLendingTreeMap;
+    }
+    public int getNumLending() {
+        return numTotal - numAvailable;
+    }
+    public int getNumLending(int id) {
+        return numLendingTreeMap.get(id);
+    }
 
     /* 全部ProductSystemでいいかもです */
     // /* For Staff */
