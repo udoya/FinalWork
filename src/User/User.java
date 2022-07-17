@@ -1,15 +1,16 @@
 package User;
 
-public class User {
+abstract class User {
     protected String name;
     protected int id;
     protected boolean isMaster = false;
+    protected String password;
 
-    void setName(String name) {
+    // For Sign in
+    // Constructor
+    public User(String name, int id, String password) {
         this.name = name;
-    }
-
-    void setID(int id) {
         this.id = id;
+        this.password = password;
     }
 }

@@ -14,7 +14,7 @@ class Product {
     String name;
     int numTotal;
     int numAvailable;
-    TreeMap<Integer, Integer> numLendingTreeMap = new TreeMap<Integer, Integer>();
+    TreeMap<Integer, Integer> lendingList = new TreeMap<Integer, Integer>();
     /* NOTE: the key is ID who borrows, the value is number of borrowing */
 
     /* Constructor */
@@ -72,18 +72,18 @@ class Product {
     void borrowThis(int id, int num) {
         if (this.numAvailable >= num) {
             this.numAvailable -= num;
-            if (this.numLendingTreeMap.containsKey(id)) {
-                this.numLendingTreeMap.put(id, this.numLendingTreeMap.get(id) + num);
+            if (this.lendingList.containsKey(id)) {
+                this.lendingList.put(id, this.lendingList.get(id) + num);
             } else {
-                this.numLendingTreeMap.put(id, num);
+                this.lendingList.put(id, num);
             }
         }
     }
 
     void returnThis(int id, int num) {
-        if (this.numLendingTreeMap.containsKey(id)) {
-            if (this.numLendingTreeMap.get(id) >= num) {
-                this.numLendingTreeMap.put(id, this.numLendingTreeMap.get(id) - num);
+        if (this.lendingList.containsKey(id)) {
+            if (this.lendingList.get(id) >= num) {
+                this.lendingList.put(id, this.lendingList.get(id) - num);
                 this.numAvailable += num;
             } else {
 
@@ -98,7 +98,7 @@ class Product {
      * @param num: the number of the products that the customer borrows
      */
     void setLendTreeMap(int id, int num) {
-        numLendingTreeMap.put(id, num);
+        lendingList.put(id, num);
     }
 
     /**
@@ -119,8 +119,8 @@ class Product {
         }
 
         // check whether the lendingTreeMap contains the ID or not.
-        if (numLendingTreeMap.containsKey(id)) {
-            currentNum = numLendingTreeMap.get(id);
+        if (lendingList.containsKey(id)) {
+            currentNum = lendingList.get(id);
         } else {
             currentNum = 0;
         }
@@ -135,7 +135,7 @@ class Product {
         }
 
         // change the number of lending.
-        numLendingTreeMap.put(id, afterNum);
+        lendingList.put(id, afterNum);
         // change the number of available products.
         this.numAvailable -= borrowNum;
 

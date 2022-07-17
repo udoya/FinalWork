@@ -1,0 +1,11 @@
+それぞれのクラスにはその情報を取り出せるようなメソッドを定義する
+
+Productクラス
+
+Staffクラス
+getAgeとか
+
+
+StaffGUI
+CustomerGUI
+getProductListみたいなのはGUIのほうで
