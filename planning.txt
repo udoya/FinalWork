@@ -9,3 +9,35 @@ getAgeとか
 StaffGUI
 CustomerGUI
 getProductListみたいなのはGUIのほうで
+
+
+/* MODEL */
+Productクラス
+・changeNumなど
+
+ProductListクラス
+・addProduct：重複チェックしてpList.add(new Product(~~~))
+
+Userクラス
+ - name
+・changeNameなど
+
+Customerクラス
+ - lendingList <ProductName/lendNum>
+・changeLendingList
+
+CustomerListクラス
+・addCustomer
+
+Staffクラス
+・isMaster
+
+
+
+
+
+/* CONTROL */
+ProductSystemクラスないかも
+
+
+

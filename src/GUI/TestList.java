@@ -22,6 +22,7 @@ public class TestList {
 			if (index != -1) {
 				listModel.remove(index);
 			} else {
+				// Pop up error message
 				JOptionPane.showMessageDialog(list, "None selected!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}

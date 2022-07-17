@@ -1,24 +1,25 @@
 package Product;
 
 import java.util.TreeMap;
+import java.io.File;
+import java.io.IOException;
 
 /*
  * Product class
  * - name: name of the product
  * - numTotal: number of the products that are in the system
  * - numAvailable: number of the products that are available
- * - numLendingTreeMap: Tree of the information that *who* is borrowing *how many* products
+ * - lendingList: List of the information that *who(id)* is borrowing *how many* products
 //  * - price: price of the product
  */
-class Product {
+public class Product {
     String name;
     int numTotal;
     int numAvailable;
     TreeMap<Integer, Integer> lendingList = new TreeMap<Integer, Integer>();
     /* NOTE: the key is ID who borrows, the value is number of borrowing */
+    File imageFile = new File("no_image.png");
 
-    /* Constructor */
-    /* TreeMap は最初何ももってないからこれでいい？ */
     /**
      * Constructor
      * 
@@ -33,10 +34,38 @@ class Product {
         System.out.println("Product: " + name + " has been added as " + numAvailable + ".");
     }
 
-    /* For Staff */
+    /* Getter */
+    public String getName() {
+        return name;
+    }
+
+    public int getNumTotal() {
+        return numTotal;
+    }
+
+    public int getNumAvailable() {
+        return numAvailable;
+    }
+
+    public int getNumLending() {
+        return numTotal - numAvailable;
+    }
+
+    public TreeMap<Integer, Integer> getLendingList() {
+        return lendingList;
+    }
+
+    public File getImageFile() {
+        return imageFile;
+    }
+
+    /* Setter */
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
+    }
+
     /**
-     * 製品名変更
-     * 
+     *
      * @param name: the name of the product
      */
     // TODO: What if the name is already in the list? Maybe it should be in
@@ -48,13 +77,12 @@ class Product {
         System.out.println("Product name changed to " + name + " from " + tmp + ".");
     }
 
-    /* For Staff */
     /**
      * 在庫追加・削除
      * 
      * @param difNum: a difference of the number of the products that are available
      */
-    void changenumAvailable(int difNum) {
+    void changeNumAvailable(int difNum) {
         if (this.numAvailable + difNum >= 0) {
             this.numAvailable += difNum;
         } else {
