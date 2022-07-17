@@ -20,53 +20,78 @@ public class MainScreen {
     // }
     // }
 
-    public Component createHeaderComponents() {
+    public Component createHeader() {
 
         // ButtonAction buttonListener = new ButtonAction();
         // homeBtn.addActionListener(buttonListener);
         // userBtn.addActionListener(buttonListener);
 
-        // make main panel
-        JPanel mainPanel = new JPanel();
+        JPanel header = new JPanel();
+        // header 1*6
+        header.setLayout(new GridLayout(0, 6, 0, 0));
+        header.add(new JButton("Main"));
+        header.add(new JButton("Information"));
+        header.add(new JButton("Search"));
+        header.add(new JButton("Add"));
+        header.add(new JButton("Edit"));
+        header.add(new JButton("Delete"));
 
-        // make header panel (1*6)
-        // header panel has a 6 buttons
-        JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(new GridLayout(1, 6));
-        headerPanel.add(homeBtn);
-        headerPanel.add(userBtn);
-        headerPanel.add(textField);
-        headerPanel.add(new JButton("search"));
-        headerPanel.add(new JButton("cart"));
-        headerPanel.add(new JButton("logout"));
+        return header;
+    }
 
-        // put into main panel
-        mainPanel.add(headerPanel);
+    public Component createFooter() {
+        // footer
+        JPanel mainFooter = new JPanel();
+        mainFooter.setLayout(new GridLayout(0, 2, 0, 0));
 
-        return mainPanel;
+        // sub footer
+        JPanel sub1Footer = new JPanel();
+        sub1Footer.setLayout(new GridLayout(2, 0, 0, 0));
 
+        JPanel sub2Footer = new JPanel();
+        sub2Footer.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        JLabel footerLabel = new JLabel("Copyright@2020");
+        JLabel footerLabel2 = new JLabel("All rights reserved.");
+        sub1Footer.add(footerLabel);
+        sub1Footer.add(footerLabel2);
+
+        JButton footerButton = new JButton("OK");
+        // size
+        footerButton.setPreferredSize(new Dimension(100, 40));
+        sub2Footer.add(footerButton);
+
+        mainFooter.add(sub1Footer);
+        mainFooter.add(sub2Footer);
+
+        return mainFooter;
     }
 
     public Component createComponents() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(createHeaderComponents(), BorderLayout.NORTH);
         mainPanel.add(new JLabel("Main Screen"), BorderLayout.CENTER);
         return mainPanel;
     }
 
     public static void main(String[] args) {
         MainScreen app = new MainScreen();
-        Component header = app.createComponents();
+        Component contents = app.createComponents();
 
         JFrame frame = new JFrame("Prob103");
 
-        frame.getContentPane().add(header, BorderLayout.CENTER);
+        Component header = app.createHeader();
+        Component footer = app.createFooter();
+
+        header.setPreferredSize(new Dimension(100, 100));
+        frame.getContentPane().add(header, BorderLayout.NORTH);
+        frame.getContentPane().add(contents, BorderLayout.CENTER);
+        frame.getContentPane().add(footer, BorderLayout.SOUTH);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /* to change the size of the frame, use setSize() */
-        // frame.setSize(300, 300);
-        frame.pack();
+        frame.setSize(800, 600);
+        // frame.pack();
         frame.setVisible(true);
     }
 }

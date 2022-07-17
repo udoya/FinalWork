@@ -13,12 +13,12 @@ import java.io.IOException;
 //  * - price: price of the product
  */
 public class Product {
-    String name;
-    int numTotal;
-    int numAvailable;
-    TreeMap<Integer, Integer> lendingList = new TreeMap<Integer, Integer>();
+    private String name;
+    private int numTotal;
+    private int numAvailable;
+    private TreeMap<Integer, Integer> lendingList = new TreeMap<Integer, Integer>();
     /* NOTE: the key is ID who borrows, the value is number of borrowing */
-    File imageFile = new File("no_image.png");
+    private File imageFile = new File("no_image.png");
 
     /**
      * Constructor
@@ -26,12 +26,13 @@ public class Product {
      * @param name     the name of the product
      * @param numTotal the number of the products
      */
-    Product(String name, int numTotal) {
+    public Product(String name, int numTotal) throws IllegalArgumentException {
+        if (name == null || numTotal < 0) {
+            throw new IllegalArgumentException();
+        }
         this.name = name;
         this.numTotal = numTotal;
         this.numAvailable = numTotal;
-        // TODO: Print on the console the following message:
-        System.out.println("Product: " + name + " has been added as " + numAvailable + ".");
     }
 
     /* Getter */
@@ -55,42 +56,42 @@ public class Product {
         return lendingList;
     }
 
+    public int getNumLending(int id) {
+        if (lendingList.containsKey(id)) {
+            return lendingList.get(id);
+        } else {
+            return -1;
+        }
+    }
+
     public File getImageFile() {
         return imageFile;
     }
 
     /* Setter */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumTotal(int numTotal) {
+        this.numTotal = numTotal;
+    }
+
+    public void setNumAvailable(int difNum) {
+        this.numAvailable += difNum;
+    }
+
+    public void setLendingList(TreeMap<Integer, Integer> lendingList) {
+        this.lendingList = lendingList;
+    }
+
     public void setImageFile(File imageFile) {
         this.imageFile = imageFile;
     }
 
-    /**
-     *
-     * @param name: the name of the product
+    /*
+     ******* CONTROLLER *******
      */
-    // TODO: What if the name is already in the list? Maybe it should be in
-    // ProductSystem?
-    void changeName(String name) {
-        String tmp = this.name;
-        this.name = name;
-        // TODO: Print on the console the following message:
-        System.out.println("Product name changed to " + name + " from " + tmp + ".");
-    }
-
-    /**
-     * 在庫追加・削除
-     * 
-     * @param difNum: a difference of the number of the products that are available
-     */
-    void changeNumAvailable(int difNum) {
-        if (this.numAvailable + difNum >= 0) {
-            this.numAvailable += difNum;
-        } else {
-            // TODO: error;
-        }
-    }
-
-    /* For Customer */
     /**
      * Use when a customer borrows
      * 

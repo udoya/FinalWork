@@ -36,8 +36,3 @@ Staffクラス
 
 
 
-/* CONTROL */
-ProductSystemクラスないかも
-
-
-
