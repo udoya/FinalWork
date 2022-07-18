@@ -3,11 +3,7 @@ package Product;
 import java.util.*;
 
 public class ProductSystem {
-    private ArrayList<Product> pList;
-
-    public ProductSystem() {
-        pList = new ArrayList<Product>();
-    }
+    private ArrayList<Product> pList = new ArrayList<Product>();
 
     /* Getter */
     public ArrayList<Product> getProductList() {
