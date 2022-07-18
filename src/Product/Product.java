@@ -16,8 +16,7 @@ public class Product {
     private String name;
     private int numTotal;
     private int numAvailable;
-    private TreeMap<Integer, Integer> lendingList = new TreeMap<Integer, Integer>();
-    /* NOTE: the key is ID who borrows, the value is number of borrowing */
+    private TreeMap<Integer, Integer> lendingList; // key: userID, value: quantity
     private File imageFile = new File("no_image.png");
 
     /**
@@ -33,6 +32,7 @@ public class Product {
         this.name = name;
         this.numTotal = numTotal;
         this.numAvailable = numTotal;
+        this.lendingList = new TreeMap<Integer, Integer>();
     }
 
     /* Getter */

@@ -1,14 +1,14 @@
 package User;
 
-abstract class User {
+public class User {
     protected String name;
-    protected int id;
+    protected String id;
     protected String password;
     protected boolean isMaster = false;
 
     // For Sign in
     // Constructor
-    public User(String name, int id, String password) {
+    public User(String name, String id, String password) {
         this.name = name;
         this.id = id;
         this.password = password;
@@ -18,12 +18,15 @@ abstract class User {
     public void setName(String name) {
         this.name = name;
     }
-    public void setId(int id) {
+
+    public void setID(String id) {
         this.id = id;
     }
+
     public void setIsMaster(boolean isMaster) {
         this.isMaster = isMaster;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -32,17 +35,16 @@ abstract class User {
     public String getName() {
         return name;
     }
-    public int getId() {
+
+    public String getID() {
         return id;
     }
+
     public boolean isMaster() {
         return isMaster;
     }
-    public String getPassword(int id) {
-        if (this.id == id) {
-            return password;
-        } else {
-            return "";
-        }
+
+    public String getPassword() {
+        return password;
     }
 }
