@@ -10,7 +10,7 @@ public class Customer extends User {
     /**
      * Constructor
      */
-    public Customer(String name, int id, String password) {
+    public Customer(String name, String id, String password) {
         super(name, id, password);
         isMaster = false;
     }

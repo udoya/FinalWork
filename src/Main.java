@@ -1,7 +1,9 @@
 import Product.*;
+import User.*;
 
 public class Main {
     static ProductSystem productSystem = new ProductSystem();
+    static UserSystem userSystem = new UserSystem();
 
     // NOTE: Create Sample Data (to make another Class?)
 
