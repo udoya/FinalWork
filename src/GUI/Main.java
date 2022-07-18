@@ -6,7 +6,7 @@ import User.*;
 public class Main {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
-    static MainWindow mainWindow;
+    public static MainWindow mainWindow;
     public static ProductModel pModel;
     public static UserModel uModel;
 
@@ -17,7 +17,7 @@ public class Main {
         mainWindow = new MainWindow();
         mainWindow.preparePanels();
         mainWindow.prepareComponents();
-        mainWindow.setFrontScreenAndFocus(ScreenMode.SIGNUP);
+        mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
 
         mainWindow.setVisible(true);
     }

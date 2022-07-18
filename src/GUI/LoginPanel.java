@@ -17,24 +17,48 @@ public class LoginPanel extends JPanel {
     JButton quitButton;
 
     class BtnAction implements ActionListener {
+        LoginController LC = new LoginController();
+
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == signInBtn) {
                 // input from JtextField
                 String ID = IDField.getText();
                 String password = passwordField.getText();
-                // pop up a window to show the input
-                JOptionPane.showMessageDialog(null, "ID: " + ID + "\nPassword: " + password, "Sign In",
-                        JOptionPane.INFORMATION_MESSAGE);
 
-                // check the input
+                // Check Input
                 if (ID.equals("") || password.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Please input ID and password", "Error",
+                    JOptionPane.showMessageDialog(null, "Please input ID and Password", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    // check the ID and password
-                    if ()
+                    // try to sign in
+                    int login = LC.login(ID, password);
+                    String name;
+                    switch (login) {
+                        case 0:
+                            JOptionPane.showMessageDialog(null, "Invalid ID or Password", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                            break;
+                        case 1:
+                            name = LC.getName(ID);
+                            JOptionPane.showMessageDialog(null, "Login Success\nStaff: " + name, "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            Main.mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF);
+                            break;
+                        case 2:
+                            name = LC.getName(ID);
+                            JOptionPane.showMessageDialog(null, "Login Success\nWelcome " + name, "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            Main.mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
+                            break;
+                    }
+                    // Too many wrong attempts
+                    if (LC.getLoginCount() > 5) {
+                        JOptionPane.showMessageDialog(null, "Too many login attempts.\nPlease try again later.",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                        System.exit(0);
+                    }
                 }
-                Main.mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
+
             }
             if (e.getSource() == signUpBtn) {
                 // TODO: move home screen

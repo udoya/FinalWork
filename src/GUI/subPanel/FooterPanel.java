@@ -24,10 +24,14 @@ public class FooterPanel extends JPanel {
 
         sub2Footer.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        sub1Footer.add(footerLabel);
+        JPanel sub1A = new JPanel();
+        sub1A.setLayout(new GridLayout(2, 1));
+        sub1A.add(footerLabel);
+
         // add bottom margin to footerLabel2
-        footerLabel2.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-        sub1Footer.add(footerLabel2);
+        footerLabel2.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+        sub1A.add(footerLabel2);
+        sub1Footer.add(sub1A);
 
         // when click quit button, close the window
         quitButton.addActionListener(new ActionListener() {

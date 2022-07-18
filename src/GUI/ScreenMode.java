@@ -5,5 +5,6 @@ public enum ScreenMode {
     HOME,
     SIGNUP,
     CUSTOMER,
+    CUSTOMER2,
     STAFF
 }

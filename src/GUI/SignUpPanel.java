@@ -1,7 +1,6 @@
 //this is sample Panel
 package GUI;
 
-import GUI.Controller.*;
 import GUI.subPanel.FooterPanel;
 
 import java.awt.Color;
