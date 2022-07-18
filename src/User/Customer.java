@@ -15,6 +15,11 @@ public class Customer extends User {
         isMaster = false;
     }
 
+    /* Getter */
+    public HashMap<String, Integer> getBorrowingList() {
+        return borrowingList;
+    }
+
     void borrowItem(String product, int borrowNum) {
         final int existNum;
         if (borrowingList.containsKey(product)) {
@@ -23,11 +28,6 @@ public class Customer extends User {
             existNum = 0;
         }
         borrowingList.put(product, existNum + borrowNum);
-
-        // TODO: error message when numPossession < (existNum + borrowNum)
-
-        // ???: Maybe it should be System class's method?
-
     }
 
     void returnItem(String product, int returnNum) {
