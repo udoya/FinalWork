@@ -19,7 +19,7 @@ abstract class User {
         this.name = name;
     }
 
-    public void setId(String id) {
+    public void setID(String id) {
         this.id = id;
     }
 
@@ -36,7 +36,7 @@ abstract class User {
         return name;
     }
 
-    public String getId() {
+    public String getID() {
         return id;
     }
 
