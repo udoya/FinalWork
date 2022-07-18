@@ -15,16 +15,16 @@ abstract class User {
     }
 
     // Setter
-    public void changeName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-    public void changeId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
-    public void changeIsMaster(boolean isMaster) {
+    public void setIsMaster(boolean isMaster) {
         this.isMaster = isMaster;
     }
-    public void changePassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
