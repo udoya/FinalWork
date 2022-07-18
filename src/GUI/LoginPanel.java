@@ -144,9 +144,9 @@ public class LoginPanel extends JPanel {
     public void prepareComponents() {
         this.setLayout(null);
         Component main = joinMainsAndFooter();
-        final int width = 320;
+        final int width = 300;
         final int height = 200;
-        final int x = (Main.mainWindow.getWidth() - width) / 2;
+        final int x = -5 + (Main.mainWindow.getWidth() - width) / 2;
         final int y = -30 + (Main.mainWindow.getHeight() - height) / 2;
 
         main.setBounds(x, y, width, height);

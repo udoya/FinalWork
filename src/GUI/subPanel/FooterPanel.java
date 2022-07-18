@@ -36,7 +36,13 @@ public class FooterPanel extends JPanel {
         // when click quit button, close the window
         quitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                // make option pane for confirm quit
+                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to quit?", "Quit",
+                        JOptionPane.YES_NO_OPTION);
+                // if yes then sign out
+                if (confirm == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
         });
 

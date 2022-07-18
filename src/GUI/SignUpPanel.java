@@ -105,7 +105,7 @@ public class SignUpPanel extends JPanel {
         this.setLayout(null);
         Component main = joinMainsAndFooter();
         final int width = 320;
-        final int height = 220;
+        final int height = 230;
         final int x = (Main.mainWindow.getWidth() - width) / 2;
         final int y = -30 + (Main.mainWindow.getHeight() - height) / 2;
 

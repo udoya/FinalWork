@@ -7,8 +7,8 @@ import java.awt.*;
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
     ScreenMode screenMode = ScreenMode.LOGIN;
-    final int WIDTH = 800;
-    final int HEIGHT = 600;
+    static final int WIDTH = 1600;
+    static final int HEIGHT = 1000;
     CardLayout layout = new CardLayout();
     LoginPanel lgPanel;
     SignUpPanel signUpPanel;
@@ -21,7 +21,7 @@ public class MainWindow extends JFrame {
         this.setResizable(false);
         this.getContentPane().setBackground(Color.green);
         this.setLayout(layout);
-        this.setPreferredSize(new Dimension(WIDTH / 2, HEIGHT / 2));
+        this.setPreferredSize(new Dimension(400, 300));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -51,17 +51,18 @@ public class MainWindow extends JFrame {
     public void setFrontScreenAndFocus(ScreenMode s) {
         this.screenMode = s;
         // change screen size
-        // if (this.screenMode != ScreenMode.LOGIN) {
-        // // resize
-        // this.setSize(WIDTH, HEIGHT);
-        // } else {
-        // // resize
-        // this.setSize(WIDTH / 2, HEIGHT / 2);
-        // }
+        if (this.screenMode == ScreenMode.LOGIN || this.screenMode == ScreenMode.SIGNUP) {
+            // resize
+            this.setSize(400, 300);
+        } else {
+            // resize
+            this.setSize(WIDTH, HEIGHT);
+        }
+
+        this.setLocationRelativeTo(null);
 
         switch (this.screenMode) {
             case LOGIN:
-                this.setSize(WIDTH / 2, HEIGHT / 2);
                 layout.show(this.getContentPane(), "Sign In");
                 lgPanel.requestFocus();
                 break;
@@ -69,12 +70,10 @@ public class MainWindow extends JFrame {
                 // TODO add home screen
                 break;
             case SIGNUP:
-                this.setSize(WIDTH / 2, HEIGHT / 2);
                 layout.show(this.getContentPane(), "Sign Up");
                 signUpPanel.requestFocus();
                 break;
             case CUSTOMER:
-                this.setSize(WIDTH, HEIGHT);
                 layout.show(this.getContentPane(), "Customer");
                 customerPanel.requestFocus();
                 break;

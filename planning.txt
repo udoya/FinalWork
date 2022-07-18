@@ -36,34 +36,34 @@ Staffクラス
 
 **** GUI ****
 LoginPanel
-・signIn
- - Match ID and pass
-・singUp
+    ・signIn
+        - Match ID and pass
+    ・singUp
 
 SignUpPanel
- - 入力フィールド
-・register
- - Check if the necessary inputs are not null
+        - 入力フィールド
+    ・register
+        - Check if the necessary inputs are not null
 
 StaffPanel
-*things of Oneself(MyPage): panel1
-*things of Customer: panel2
-・add
-・remove
-・fix(change)
-・look(find/search)
-*things of Product: panel3
-・add
-・remove
-・fix(change)
-・look(find/search)
+    *things of Oneself(MyPage): panel1
+    *things of Customer: panel2
+        ・add
+        ・remove
+        ・fix(change)
+        ・look(find/search)
+    *things of Product: panel3
+        ・add
+        ・remove
+        ・fix(change)
+        ・look(find/search)
 
 CustomerPanel
-*things of Oneself(MyPage): panel1
- - list of borrowing
-*borrowAndReturn: panel2
- - list of Product
- - list of borrowing(//MEMO これで更新できるか見れるからexistNumで比較して～とかいらないかも)
+    *things of Oneself(MyPage): panel1
+        - list of borrowing
+    *borrowAndReturn: panel2
+        - list of Product
+        - list of borrowing(//MEMO これで更新できるか見れるからexistNumで比較して～とかいらないかも)
 
 
 

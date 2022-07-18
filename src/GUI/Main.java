@@ -4,9 +4,9 @@ import Product.*;
 import User.*;
 
 public class Main {
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
     public static MainWindow mainWindow;
+    public static final int WIDTH = MainWindow.WIDTH;
+    public static final int HEIGHT = MainWindow.HEIGHT;
     public static ProductModel pModel;
     public static UserModel uModel;
 
@@ -17,7 +17,7 @@ public class Main {
         mainWindow = new MainWindow();
         mainWindow.preparePanels();
         mainWindow.prepareComponents();
-        mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
+        mainWindow.setFrontScreenAndFocus(ScreenMode.LOGIN);
 
         mainWindow.setVisible(true);
     }
