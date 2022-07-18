@@ -51,6 +51,14 @@ public class UserModel {
         return null;
     }
 
+    public Customer getCustomer(String id) {
+        int index = checkID(id);
+        if (index >= 0) {
+            return (Customer) userList.get(index);
+        }
+        return null;
+    }
+
     /**
      * Get list of User by name (partially match)
      * 
@@ -99,6 +107,13 @@ public class UserModel {
             return true;
         }
         return false;
+    }
+
+    public void updateUser(User user) {
+        int index = checkID(user.getID());
+        if (index >= 0) {
+            userList.set(index, user);
+        }
     }
 
 }

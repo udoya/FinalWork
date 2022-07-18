@@ -1,32 +1,189 @@
 package GUI.subPanel;
 
+import GUI.*;
 import GUI.Controller.*;
 import GUI.subPanel.HeaderPanel;
+import Product.*;
+import User.*;
 
 import GUI.subPanel.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
-public class ProductListPanel {
+public class ProductListPanel extends JPanel {
     private JLabel label;
-    private JLabel searchLabel;
     private JTextField searchField;
-    private DefaultListModel<String> listModel;
+    private static DefaultListModel<String> listModel;
+    private static ArrayList<Integer> productIdList;
     private JList<String> list;
+    private JTextField borrowField;
 
-    public Component createComponents() {
+    ProductModel pModel = Main.pModel;
+    UserModel uModel = Main.uModel;
+    String uID = LoginPanel.ID;
+
+    public void setProductList() {
+        listModel = new DefaultListModel<>();
+        productIdList = new ArrayList<Integer>();
+
+        // "ProductName Available/Total"
+        for (int i = 0; i < pModel.getProductListSize(); i++) {
+            Product p = pModel.getProduct(i);
+            listModel.addElement(p.getName() + " " + p.getNumAvailable() + "/" + p.getNumTotal());
+            productIdList.add(i);
+        }
+    }
+
+    private int borrowProduct(Product product, Customer customer, int bNum) {
+        if (bNum < 0) {
+            return -1;
+        }
+        if (product.getNumAvailable() >= bNum) {
+            product.setNumAvailable(product.getNumAvailable() - bNum);
+            customer.borrowItem(product, bNum);
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    class SearchBtnAction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            listModel = new DefaultListModel<>();
+            productIdList = new ArrayList<Integer>();
+
+            String tempText = searchField.getText();
+            for (int i = 0; i < pModel.getProductListSize(); i++) {
+                Product p = pModel.getProduct(i);
+                // TODO: now, search with distinct product name(upper and lower case)
+                if (p.getName().contains(tempText)) {
+                    listModel.addElement(p.getName() + " " + p.getNumAvailable() + "/" +
+                            p.getNumTotal());
+                    productIdList.add(i);
+                }
+            }
+            // update list
+            list.setModel(listModel);
+        }
+    }
+
+    class BorrowBtnAction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int bNum = Integer.valueOf(borrowField.getText());
+
+            int index = list.getSelectedIndex();
+            if (index == -1) {
+                JOptionPane.showMessageDialog(null, "Please select a product");
+                return;
+            } else {
+                int pId = productIdList.get(index);
+                Product p = pModel.getProduct(pId);
+                Customer c = uModel.getCustomer(uID);
+                switch (borrowProduct(p, c, bNum)) {
+                    case -1:
+                        JOptionPane.showMessageDialog(null, "Input positive number.");
+                        break;
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null,
+                                "You borrowed " + bNum + " " + p.getName() + " successfully.");
+                        break;
+                }
+                pModel.updateProduct(p);
+                // System.out.println("Av:" + p.getNumAvailable());
+                // System.out.println("To:" + p.getNumTotal());
+                // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());
+                // System.out.println(pModel.getProduct(productIdList.get(index)).getNumTotal());
+                setProductList();
+
+                // update list
+                list.setModel(listModel);
+
+            }
+        }
+    }
+
+    public ProductListPanel() {
+        setProductList();
+
         label = new JLabel("Product List");
-        searchLabel = new JLabel("Search");
-        searchField = new JTextField("");
-
-        listModel = new DefaultListModel<String>();
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setForeground(Color.BLACK);
+        label.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        label.setHorizontalAlignment(JLabel.CENTER);
 
         list = new JList<String>(listModel);
         list.setVisibleRowCount(10);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        list.setBackground(Color.WHITE);
+        list.setForeground(Color.BLACK);
+        list.setFont(new Font("Arial", Font.PLAIN, 40));
+        list.setSelectedIndex(0);
+        list.setSelectionBackground(Color.BLACK);
+        list.setSelectionForeground(Color.WHITE);
+        list.setVisible(true);
+
         JScrollPane scrollPanel = new JScrollPane(list);
+        scrollPanel.createVerticalScrollBar();
         scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        JButton searchBtn = new JButton("Search");
+        SearchBtnAction searchBtnListener = new SearchBtnAction();
+        searchBtn.addActionListener(searchBtnListener);
+        // searchBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel searchPanel = new JPanel();
+        searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
+        searchField = new JTextField("");
+        // resize the text field and btn
+        searchField.setPreferredSize(new Dimension(500, 60));
+        searchField.setFont(new Font("Segoe UI", Font.PLAIN, 40));
+        searchBtn.setPreferredSize(new Dimension(120, 60));
+        // fontsize
+        searchBtn.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        searchBtn.setBackground(Color.ORANGE);
+        searchBtn.setForeground(Color.DARK_GRAY);
+
+        searchPanel.add(searchField);
+        searchPanel.add(searchBtn);
+
+        JButton borrowBtn = new JButton("Borrow");
+        BorrowBtnAction borrowBtnListener = new BorrowBtnAction();
+        borrowBtn.addActionListener(borrowBtnListener);
+        // searchBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel borrowPanel = new JPanel();
+        borrowPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
+        borrowField = new JTextField("0");
+        // resize the text field and btn
+        borrowField.setPreferredSize(new Dimension(250, 100));
+        borrowField.setFont(new Font("Segoe UI", Font.PLAIN, 40));
+
+        borrowBtn.setPreferredSize(new Dimension(120, 60));
+        borrowBtn.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        // btn color
+        borrowBtn.setBackground(Color.ORANGE);
+        borrowBtn.setForeground(Color.DARK_GRAY);
+
+        borrowPanel.add(borrowField);
+        borrowPanel.add(borrowBtn);
+
+        borrowPanel.setBackground(Color.PINK);
+        this.setBackground(Color.PINK);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        this.add(label);
+        this.add(searchPanel);
+        this.add(scrollPanel);
+        this.add(borrowPanel);
 
     }
 }

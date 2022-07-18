@@ -13,9 +13,10 @@ public class MainWindow extends JFrame {
     LoginPanel lgPanel;
     SignUpPanel signUpPanel;
     CustomerPanel customerPanel;
+    StaffPanel staffPanel;
 
     MainWindow() {
-        this.setTitle("Sign In");
+        this.setTitle("Store Management System");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -40,12 +41,17 @@ public class MainWindow extends JFrame {
         customerPanel = new CustomerPanel();
         this.add(customerPanel, "Customer");
         this.pack();
+
+        staffPanel = new StaffPanel();
+        this.add(staffPanel, "Staff");
+        this.pack();
     }
 
     public void prepareComponents() {
         lgPanel.prepareComponents();
         signUpPanel.prepareComponents();
         customerPanel.prepareComponents();
+        staffPanel.prepareComponents();
     }
 
     public void setFrontScreenAndFocus(ScreenMode s) {
@@ -78,7 +84,8 @@ public class MainWindow extends JFrame {
                 customerPanel.requestFocus();
                 break;
             case STAFF:
-                // TODO add staff screen
+                layout.show(this.getContentPane(), "Staff");
+                staffPanel.requestFocus();
                 break;
         }
     }

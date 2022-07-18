@@ -29,7 +29,7 @@ public class HeaderPanel extends JPanel {
         }
     }
 
-    public HeaderPanel() {
+    public HeaderPanel(int BtnIndex) {
 
         // header 1*6
         this.setLayout(new GridLayout(0, 6, 0, 0));
@@ -40,13 +40,40 @@ public class HeaderPanel extends JPanel {
         signOutBtn = new JButton("Return");
         signOutBtn.addActionListener(new BtnAction());
 
+        // 3 of the test btn
+        JButton testBtn = new JButton("Test");
+        JButton testBtn2 = new JButton("Test2");
+        JButton testBtn3 = new JButton("Test3");
+
+        // for all btn, change font size
+        mainBtn.setFont(new Font("Arial", Font.BOLD, 20));
+        infoBtn.setFont(new Font("Arial", Font.BOLD, 20));
+        signOutBtn.setFont(new Font("Arial", Font.BOLD, 20));
+        testBtn.setFont(new Font("Arial", Font.BOLD, 20));
+        testBtn2.setFont(new Font("Arial", Font.BOLD, 20));
+        testBtn3.setFont(new Font("Arial", Font.BOLD, 20));
+
+        // set btn color depend on BtnIndex
+        switch (BtnIndex) {
+            case 0:
+                mainBtn.setBackground(Color.cyan);
+                break;
+            case 1:
+                // change info
+                infoBtn.setBackground(Color.cyan);
+
+                break;
+            case 2:
+                // change sign out
+                signOutBtn.setBackground(Color.cyan);
+                break;
+        }
+
         this.add(mainBtn);
         this.add(infoBtn);
-        this.add(new JButton("Search"));
-        this.add(new JButton("Add"));
-        this.add(new JButton("Edit"));
+        this.add(testBtn);
+        this.add(testBtn2);
+        this.add(testBtn3);
         this.add(signOutBtn);
-
     }
-
 }

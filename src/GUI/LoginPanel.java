@@ -15,6 +15,7 @@ public class LoginPanel extends JPanel {
     JButton signInBtn;
     JButton signUpBtn;
     JButton quitButton;
+    public static String ID;
 
     class BtnAction implements ActionListener {
         LoginController LC = new LoginController();
@@ -22,7 +23,7 @@ public class LoginPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == signInBtn) {
                 // input from JtextField
-                String ID = IDField.getText();
+                ID = IDField.getText();
                 String password = passwordField.getText();
 
                 // Check Input
