@@ -1,6 +1,8 @@
 package GUI.subPanel;
 
 import GUI.*;
+import User.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,9 +12,18 @@ public class HeaderPanel extends JPanel {
     JButton mainBtn;
     JButton infoBtn;
     JButton signOutBtn;
+    private JLabel userNameLabel;
+    private JLabel userRoleLabel;
+
+    public void changeUserLabel(String uID) {
+        User user = Main.uModel.getUser(uID);
+        userNameLabel.setText("User Name: " + user.getName());
+        userRoleLabel.setText("Role: " + user.getRole());
+    }
 
     class BtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+
             if (e.getSource() == mainBtn) {
             }
             if (e.getSource() == infoBtn) {
@@ -45,6 +56,17 @@ public class HeaderPanel extends JPanel {
         JButton testBtn2 = new JButton("Test2");
         JButton testBtn3 = new JButton("Test3");
 
+        // show user name and role
+        User user = Main.uModel.getUser(Main.uID);
+        // print uid
+        System.out.println(Main.uID);
+        userNameLabel = new JLabel("User Name: " + user.getName());
+        userRoleLabel = new JLabel("Role: " + user.getRole());
+
+        // Label setting fonts
+        userNameLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        userRoleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+
         // for all btn, change font size
         mainBtn.setFont(new Font("Arial", Font.BOLD, 20));
         infoBtn.setFont(new Font("Arial", Font.BOLD, 20));
@@ -72,8 +94,8 @@ public class HeaderPanel extends JPanel {
         this.add(mainBtn);
         this.add(infoBtn);
         this.add(testBtn);
-        this.add(testBtn2);
-        this.add(testBtn3);
+        this.add(userNameLabel);
+        this.add(userRoleLabel);
         this.add(signOutBtn);
     }
 }

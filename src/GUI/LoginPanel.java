@@ -1,7 +1,7 @@
 package GUI;
 
 import GUI.Controller.*;
-import GUI.subPanel.FooterPanel;
+import GUI.subPanel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,12 +43,14 @@ public class LoginPanel extends JPanel {
                             name = LC.getName(ID);
                             JOptionPane.showMessageDialog(null, "Login Success\nStaff: " + name, "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
+                            Main.uID = ID;
                             Main.mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF);
                             break;
                         case 2:
                             name = LC.getName(ID);
                             JOptionPane.showMessageDialog(null, "Login Success\nWelcome " + name, "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
+                            Main.uID = ID;
                             Main.mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
                             break;
                     }
