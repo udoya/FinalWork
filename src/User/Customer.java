@@ -19,12 +19,14 @@ public class Customer extends User {
     public HashMap<String, Integer> getBorrowingList() {
         return borrowingList;
     }
+
     public int getBorrowingListSize() {
         return borrowingList.size();
     }
 
     /**
      * get number of borrowing of given product
+     * 
      * @param product
      * @return number of borrowing
      */
@@ -36,6 +38,7 @@ public class Customer extends User {
             return 0;
         }
     }
+
     public int getBorrowingNumber(String productName) {
         if (borrowingList.containsKey(productName)) {
             return borrowingList.get(productName);
@@ -46,6 +49,7 @@ public class Customer extends User {
 
     /**
      * Get list of borrowing products
+     * 
      * @return list of name
      */
     public String[] getBorrowingItemName() {
@@ -60,6 +64,7 @@ public class Customer extends User {
 
     /**
      * Show borrowing list
+     * 
      * @return List of "ProductName: quantity"
      */
     public String getBorrowingListString() {
