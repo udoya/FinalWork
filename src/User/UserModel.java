@@ -11,10 +11,10 @@ public class UserModel {
 
     /* PRIVATE METHODS */
     /**
-     * Check if the ID is in the system
+     * Check if the ID is in the system and return index
      * 
      * @param id the ID to check
-     * @return non-negative(>=0) if the ID is in the system, -1 if not
+     * @return -1 if not found, otherwise return index
      */
     private int checkID(String id) {
         for (int i = 0; i < userList.size(); i++) {
@@ -50,15 +50,7 @@ public class UserModel {
         }
         return null;
     }
-
-    public Customer getCustomer(String id) {
-        int index = checkID(id);
-        if (index >= 0) {
-            return (Customer) userList.get(index);
-        }
-        return null;
-    }
-
+    
     /**
      * Get list of User by name (partially match)
      * 
@@ -109,6 +101,11 @@ public class UserModel {
         return false;
     }
 
+    /**
+     * Update a user by replacing
+     * 
+     * @param user
+     */
     public void updateUser(User user) {
         int index = checkID(user.getID());
         if (index >= 0) {

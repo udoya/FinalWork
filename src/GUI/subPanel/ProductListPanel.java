@@ -82,10 +82,10 @@ public class ProductListPanel extends JPanel {
             }
             int pId = productIdList.get(index);
             Product p = pModel.getProduct(pId);
-            Customer c = uModel.getCustomer(uID);
+            Customer c = (Customer) uModel.getUser(uID);
             switch (CC.borrowProduct(p, c, bNum)) {
                 case -1:
-                    JOptionPane.showMessageDialog(null, "Input positive number.");
+                    JOptionPane.showMessageDialog(null, "Please enter positive number.");
                     break;
                 case 1:
                     JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");
@@ -96,6 +96,7 @@ public class ProductListPanel extends JPanel {
                     break;
             }
             pModel.updateProduct(p);
+            uModel.updateUser(c);
             // System.out.println("Av:" + p.getNumAvailable());
             // System.out.println("To:" + p.getNumTotal());
             // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());

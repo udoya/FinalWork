@@ -120,6 +120,11 @@ public class ProductModel {
         p.setName(newName);
     }
 
+    /**
+     * Update product by replacing
+     * 
+     * @param p
+     */
     public void updateProduct(Product p) {
         int index = getIndex(p);
         pList.set(index, p);

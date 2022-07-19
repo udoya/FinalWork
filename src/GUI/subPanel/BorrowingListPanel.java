@@ -24,11 +24,12 @@ public class BorrowingListPanel extends JPanel {
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
     String uID = Main.uID;
-    Customer c = uModel.getCustomer(uID);
+    Customer c = (Customer) uModel.getUser(uID);
 
+    // make list to display all product list
     public void setBorrowingList() {
         listModel = new DefaultListModel<>();
-        productIdList = new ArrayList<Integer>();
+        productIdList = new ArrayList<Integer>(); // make list to store index (of borrowing product) in pModel
 
         String[] names = c.getBorrowingItemName();
         for (String name : names) {
@@ -52,56 +53,31 @@ public class BorrowingListPanel extends JPanel {
             }
             int productId = productIdList.get(index);
             Product p = pModel.getProduct(productId);
-            Customer c = uModel.getCustomer(uID);
+
             switch(CC.returnProduct(p, c, rNum)) {
-
-            }
-        }
-
-    }
-    class BorrowBtnAction implements ActionListener {
-        CustomerController CC = new CustomerController();
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int bNum = Integer.parseInt(borrowField.getText());
-
-            int index = list.getSelectedIndex();
-            if (index == -1) {
-                JOptionPane.showMessageDialog(null, "Please select a product");
-                return;
-            }
-            int pId = productIdList.get(index);
-            Product p = pModel.getProduct(pId);
-            Customer c = uModel.getCustomer(uID);
-            switch (CC.borrowProduct(p, c, bNum)) {
                 case -1:
-                    JOptionPane.showMessageDialog(null, "Input positive number.");
+                    JOptionPane.showMessageDialog(null, "Please enter a positive number.");
                     break;
                 case 1:
-                    JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");
+                    JOptionPane.showMessageDialog(null, "Please enter a number less than or equal to " + c.getBorrowingNumber(p));
                     break;
-                default:
-                    JOptionPane.showMessageDialog(null,
-                            "You borrowed " + bNum + " " + p.getName() + " successfully.");
+                case 0:
+                    JOptionPane.showMessageDialog(null, "You returned " + rNum + " " + p.getName() + " successfully.");
                     break;
+
             }
             pModel.updateProduct(p);
-            // System.out.println("Av:" + p.getNumAvailable());
-            // System.out.println("To:" + p.getNumTotal());
-            // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());
-            // System.out.println(pModel.getProduct(productIdList.get(index)).getNumTotal());
-            setProductList();
-
-            // update list
+            uModel.updateUser(c);
+            setBorrowingList();
             list.setModel(listModel);
         }
+
     }
 
-    public ProductListPanel() {
-        setProductList();
+    public BorrowingListPanel() {
+        setBorrowingList();
 
-        label = new JLabel("Product List");
+        label = new JLabel("Your Current Borrowing");
         label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setForeground(Color.BLACK);
         label.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -123,56 +99,35 @@ public class BorrowingListPanel extends JPanel {
         scrollPanel.createVerticalScrollBar();
         scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        JButton searchBtn = new JButton("Search");
-        SearchBtnAction searchBtnListener = new SearchBtnAction();
-        searchBtn.addActionListener(searchBtnListener);
-        // searchBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton returnBtn = new JButton("Return");
+        ReturnBtnAction returnBtnListener = new ReturnBtnAction();
+        returnBtn.addActionListener(returnBtnListener);
 
-        JPanel searchPanel = new JPanel();
-        searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
-        searchField = new JTextField("");
+
+        JPanel returnPanel = new JPanel();
+        returnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
+        returnField = new JTextField("0");
         // resize the text field and btn
-        searchField.setPreferredSize(new Dimension(500, 60));
-        searchField.setFont(new Font("Segoe UI", Font.PLAIN, 40));
-        searchBtn.setPreferredSize(new Dimension(120, 60));
-        // fontsize
-        searchBtn.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        searchBtn.setBackground(Color.ORANGE);
-        searchBtn.setForeground(Color.DARK_GRAY);
+        returnField.setPreferredSize(new Dimension(250, 100));
+        returnField.setFont(new Font("Segoe UI", Font.PLAIN, 40));
 
-        searchPanel.add(searchField);
-        searchPanel.add(searchBtn);
-
-        JButton borrowBtn = new JButton("Borrow");
-        BorrowBtnAction borrowBtnListener = new BorrowBtnAction();
-        borrowBtn.addActionListener(borrowBtnListener);
-        // searchBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        JPanel borrowPanel = new JPanel();
-        borrowPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
-        borrowField = new JTextField("0");
-        // resize the text field and btn
-        borrowField.setPreferredSize(new Dimension(250, 100));
-        borrowField.setFont(new Font("Segoe UI", Font.PLAIN, 40));
-
-        borrowBtn.setPreferredSize(new Dimension(120, 60));
-        borrowBtn.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        returnBtn.setPreferredSize(new Dimension(120, 60));
+        returnBtn.setFont(new Font("Segoe UI", Font.BOLD, 16));
         // btn color
-        borrowBtn.setBackground(Color.ORANGE);
-        borrowBtn.setForeground(Color.DARK_GRAY);
+        returnBtn.setBackground(Color.ORANGE);
+        returnBtn.setForeground(Color.DARK_GRAY);
 
-        borrowPanel.add(borrowField);
-        borrowPanel.add(borrowBtn);
+        returnPanel.add(returnField);
+        returnPanel.add(returnBtn);
 
-        borrowPanel.setBackground(Color.PINK);
+        returnPanel.setBackground(Color.PINK);
         this.setBackground(Color.PINK);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(label);
-        this.add(searchPanel);
         this.add(scrollPanel);
-        this.add(borrowPanel);
+        this.add(returnPanel);
 
     }
 }
