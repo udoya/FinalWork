@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+// For left side of Customer Panel
+// Contains: Search Panel(field & button), Product List Panel(Scroll), Borrow Panel(field & button)
 public class ProductListPanel extends JPanel {
     private JLabel label;
     private JTextField searchField;
@@ -22,8 +24,9 @@ public class ProductListPanel extends JPanel {
 
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
-    String uID = LoginPanel.ID;
+    String uID = Main.uID;
 
+    // make list to display all product list
     public void setProductList() {
         listModel = new DefaultListModel<>();
         productIdList = new ArrayList<Integer>();
@@ -36,25 +39,16 @@ public class ProductListPanel extends JPanel {
         }
     }
 
-    private int borrowProduct(Product product, Customer customer, int bNum) {
-        if (bNum < 0) {
-            return -1;
-        }
-        if (product.getNumAvailable() >= bNum) {
-            product.setNumAvailable(product.getNumAvailable() - bNum);
-            customer.borrowItem(product, bNum);
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
+    /*
+     * After a user write partially name of what to search, this button will be clicked.
+     */
     class SearchBtnAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel = new DefaultListModel<>();
             productIdList = new ArrayList<Integer>();
-
+            
+            // make list to display search result
             String tempText = searchField.getText();
             for (int i = 0; i < pModel.getProductListSize(); i++) {
                 Product p = pModel.getProduct(i);
@@ -70,7 +64,14 @@ public class ProductListPanel extends JPanel {
         }
     }
 
+    /**
+     * After a user selects a product and write how many to borrow, this button will be clicked.
+     * 
+     * @see GUI.Controller.CustomerController#borrowProduct(Product, Customer, int)
+     */
     class BorrowBtnAction implements ActionListener {
+        CustomerController CC = new CustomerController();
+
         @Override
         public void actionPerformed(ActionEvent e) {
             int bNum = Integer.valueOf(borrowField.getText());
@@ -83,7 +84,7 @@ public class ProductListPanel extends JPanel {
                 int pId = productIdList.get(index);
                 Product p = pModel.getProduct(pId);
                 Customer c = uModel.getCustomer(uID);
-                switch (borrowProduct(p, c, bNum)) {
+                switch (CC.borrowProduct(p, c, bNum)) {
                     case -1:
                         JOptionPane.showMessageDialog(null, "Input positive number.");
                         break;

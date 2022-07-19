@@ -16,7 +16,7 @@ public class Product {
     private String name;
     private int numTotal;
     private int numAvailable;
-    private TreeMap<Integer, Integer> lendingList; // key: userID, value: quantity
+    private TreeMap<String, Integer> lendingList; // key: userID, value: quantity
     private File imageFile = new File("no_image.png");
 
     /**
@@ -32,7 +32,7 @@ public class Product {
         this.name = name;
         this.numTotal = numTotal;
         this.numAvailable = numTotal;
-        this.lendingList = new TreeMap<Integer, Integer>();
+        this.lendingList = new TreeMap<String, Integer>();
     }
 
     /* Getter */
@@ -52,11 +52,11 @@ public class Product {
         return numTotal - numAvailable;
     }
 
-    public TreeMap<Integer, Integer> getLendingList() {
+    public TreeMap<String, Integer> getLendingList() {
         return lendingList;
     }
 
-    public int getNumLending(int id) {
+    public int getNumLending(String id) {
         if (lendingList.containsKey(id)) {
             return lendingList.get(id);
         } else {
@@ -81,7 +81,7 @@ public class Product {
         this.numAvailable = numAvailable;
     }
 
-    public void setLendingList(TreeMap<Integer, Integer> lendingList) {
+    public void setLendingList(TreeMap<String, Integer> lendingList) {
         this.lendingList = lendingList;
     }
 
@@ -98,7 +98,7 @@ public class Product {
      * @param id:  the ID of the customer
      * @param num: the number of the products that are being borrowed
      */
-    void borrowThis(int id, int num) {
+    public void borrowThis(String id, int num) {
         if (this.numAvailable >= num) {
             this.numAvailable -= num;
             if (this.lendingList.containsKey(id)) {
@@ -108,67 +108,67 @@ public class Product {
             }
         }
     }
-
-    void returnThis(int id, int num) {
+    /**
+     * Use when a customer returns
+     * 
+     * @param id:  the ID of the customer
+     * @param num: the number of the products that are being returned
+     */
+    public void returnThis(String id, int num) {
         if (this.lendingList.containsKey(id)) {
             if (this.lendingList.get(id) >= num) {
-                this.lendingList.put(id, this.lendingList.get(id) - num);
                 this.numAvailable += num;
+                if (this.lendingList.get(id) == num) {
+                    this.lendingList.remove(id);
+                } else {
+                    this.lendingList.put(id, this.lendingList.get(id) - num);
+                }
             } else {
 
             }
         }
     }
 
-    /**
-     * Use when a new customer borrows this product.
-     * 
-     * @param id:  ID of the customer
-     * @param num: the number of the products that the customer borrows
-     */
-    void setLendTreeMap(int id, int num) {
-        lendingList.put(id, num);
-    }
 
-    /**
-     * Change the number of lending.
-     ** Use when a customer returns or borrows additionally.
-     * 
-     * @param id:        ID of the customer
-     * @param borrowNum: the number of borrowing (positive) or returning (negative)
-     */
-    void changeNumLending(int id, int borrowNum) {
-        final int currentNum;
+    // /**
+    //  * Change the number of lending.
+    //  ** Use when a customer returns or borrows additionally.
+    //  * 
+    //  * @param id:        ID of the customer
+    //  * @param borrowNum: the number of borrowing (positive) or returning (negative)
+    //  */
+    // void changeNumLending(int id, int borrowNum) {
+    //     final int currentNum;
 
-        // check whether the AvailableNum - borrowNum is negative or not.
-        if (this.numAvailable < borrowNum) {
-            // TODO: error
-            System.out.println("Error: The number of available products is not enough.");
-            return;
-        }
+    //     // check whether the AvailableNum - borrowNum is negative or not.
+    //     if (this.numAvailable < borrowNum) {
+    //         // TODO: error
+    //         System.out.println("Error: The number of available products is not enough.");
+    //         return;
+    //     }
 
-        // check whether the lendingTreeMap contains the ID or not.
-        if (lendingList.containsKey(id)) {
-            currentNum = lendingList.get(id);
-        } else {
-            currentNum = 0;
-        }
+    //     // check whether the lendingTreeMap contains the ID or not.
+    //     if (lendingList.containsKey(id)) {
+    //         currentNum = lendingList.get(id);
+    //     } else {
+    //         currentNum = 0;
+    //     }
 
-        // change the number of lending.
-        int afterNum = currentNum + borrowNum;
+    //     // change the number of lending.
+    //     int afterNum = currentNum + borrowNum;
 
-        if (afterNum < 0) {
-            // TODO: error setting
-            System.out.println("Error: you can't borrow negative number of products.");
-            return;
-        }
+    //     if (afterNum < 0) {
+    //         // TODO: error setting
+    //         System.out.println("Error: you can't borrow negative number of products.");
+    //         return;
+    //     }
 
-        // change the number of lending.
-        lendingList.put(id, afterNum);
-        // change the number of available products.
-        this.numAvailable -= borrowNum;
+    //     // change the number of lending.
+    //     lendingList.put(id, afterNum);
+    //     // change the number of available products.
+    //     this.numAvailable -= borrowNum;
 
-        System.out.println("Product: " + this.name + " has been added as " + numAvailable + ".");
-        System.out.println("Now you have " + afterNum + " of " + this.name + ".");
-    }
+    //     System.out.println("Product: " + this.name + " has been added as " + numAvailable + ".");
+    //     System.out.println("Now you have " + afterNum + " of " + this.name + ".");
+    // }
 }
