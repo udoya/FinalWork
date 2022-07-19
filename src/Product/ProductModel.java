@@ -16,6 +16,10 @@ public class ProductModel {
         return pList;
     }
 
+    public int getProductListSize() {
+        return pList.size();
+    }
+
     /**
      * Get product by idx
      * 
@@ -59,13 +63,32 @@ public class ProductModel {
         System.out.println("Product:" + p.getName() + "added");
     }
 
+    private int getIndex(Product p) {
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getName().equals(p.getName())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     /**
      * Remove product from pList
      * 
      * @param p the product to be removed
      */
     public void removeProduct(Product p) {
-        pList.remove(p);
+        int index = getIndex(p);
+        pList.remove(index);
+    }
+
+    public void changeName(Product p, String newName) {
+        p.setName(newName);
+    }
+
+    public void updateProduct(Product p) {
+        int index = getIndex(p);
+        pList.set(index, p);
     }
 
 }

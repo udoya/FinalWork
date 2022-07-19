@@ -14,10 +14,25 @@ public class Main {
         pModel = new ProductModel();
         uModel = new UserModel();
 
+        try {
+            pModel.addProduct(new Product("Wooden Chair", 10));
+            pModel.addProduct(new Product("Wooden Table", 15));
+            pModel.addProduct(new Product("White Wooden Chair", 20));
+            pModel.addProduct(new Product("White Wooden Table", 25));
+            pModel.addProduct(new Product("Black Wooden Chair", 10));
+            pModel.addProduct(new Product("Black Wooden Table", 35));
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         mainWindow = new MainWindow();
         mainWindow.preparePanels();
         mainWindow.prepareComponents();
-        mainWindow.setFrontScreenAndFocus(ScreenMode.LOGIN);
+        mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
 
         mainWindow.setVisible(true);
     }

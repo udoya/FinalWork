@@ -77,8 +77,8 @@ public class Product {
         this.numTotal = numTotal;
     }
 
-    public void setNumAvailable(int difNum) {
-        this.numAvailable += difNum;
+    public void setNumAvailable(int numAvailable) {
+        this.numAvailable = numAvailable;
     }
 
     public void setLendingList(TreeMap<Integer, Integer> lendingList) {
@@ -137,7 +137,7 @@ public class Product {
      * @param id:        ID of the customer
      * @param borrowNum: the number of borrowing (positive) or returning (negative)
      */
-    void changenumAvailable(int id, int borrowNum) {
+    void changeNumLending(int id, int borrowNum) {
         final int currentNum;
 
         // check whether the AvailableNum - borrowNum is negative or not.
