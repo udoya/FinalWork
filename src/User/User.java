@@ -47,4 +47,12 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public String getRole() {
+        if (isMaster) {
+            return "Staff";
+        } else {
+            return "Customer";
+        }
+    }
 }

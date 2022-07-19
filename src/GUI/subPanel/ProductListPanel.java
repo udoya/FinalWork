@@ -17,54 +17,67 @@ import java.util.*;
 public class ProductListPanel extends JPanel {
     private JLabel label;
     private JTextField searchField;
-    private static DefaultListModel<String> listModel;
+    private static DefaultListModel<String> plistModel;
     private static ArrayList<Integer> productIdList;
-    private JList<String> list;
+    private static JList<String> plist;
     private JTextField borrowField;
 
-    ProductModel pModel = Main.pModel;
+    static ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
     String uID = Main.uID;
 
     // make list to display all product list
     public void setProductList() {
-        listModel = new DefaultListModel<>();
+        plistModel = new DefaultListModel<>();
         productIdList = new ArrayList<Integer>();
 
         // "ProductName Available/Total"
         for (int i = 0; i < pModel.getProductListSize(); i++) {
             Product p = pModel.getProduct(i);
-            listModel.addElement(p.getProductString(i));
+            plistModel.addElement(p.getProductString(i));
             productIdList.add(i);
         }
     }
 
     /*
-     * After a user write partially name of what to search, this button will be clicked.
+     * After a user write partially name of what to search, this button will be
+     * clicked.
      */
     class SearchBtnAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            listModel = new DefaultListModel<>();
+            plistModel = new DefaultListModel<>();
             productIdList = new ArrayList<Integer>();
-            
+
             // make list to display search result
             String tempText = searchField.getText();
             for (int i = 0; i < pModel.getProductListSize(); i++) {
                 Product p = pModel.getProduct(i);
                 // TODO: now, search with distinct product name(upper and lower case)
                 if (p.getName().contains(tempText)) {
-                    listModel.addElement(p.getProductString(i));
+                    plistModel.addElement(p.getProductString(i));
                     productIdList.add(i);
                 }
             }
             // update list
-            list.setModel(listModel);
+            pSetModel();
+            // CustomerPanel.borrowingListPanel.bSetModel();
+            // CustomerPanel.borrowingListPanel.bSetModel();
+            // CustomerPanel.productListPanel.pSetModel();
+
+            // BorrowingListPanel.blist.setModel(BorrowingListPanel.blistModel);
+            // repaint
+            // list.repaint();
         }
     }
 
+    public void pSetModel() {
+        plist.setModel(plistModel);
+    }
+
     /**
-     * After a user selects a product and write how many to borrow, this button will be clicked.
+     * After a user selects a product and write how many to borrow, this button will
+     * be clicked.
      * 
      * @see GUI.Controller.CustomerController#borrowProduct(Product, Customer, int)
      */
@@ -75,7 +88,7 @@ public class ProductListPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             int bNum = Integer.parseInt(borrowField.getText());
 
-            int index = list.getSelectedIndex();
+            int index = plist.getSelectedIndex();
             if (index == -1) {
                 JOptionPane.showMessageDialog(null, "Please select a product");
                 return;
@@ -102,9 +115,19 @@ public class ProductListPanel extends JPanel {
             // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());
             // System.out.println(pModel.getProduct(productIdList.get(index)).getNumTotal());
             setProductList();
+            CustomerPanel.borrowingListPanel.setBorrowingList();
 
             // update list
-            list.setModel(listModel);
+            // pSetModel();
+            CustomerPanel.borrowingListPanel.bSetModel();
+            CustomerPanel.productListPanel.pSetModel();
+
+            // repaint CustomerPanel
+            CustomerPanel.productListPanel.repaint();
+            CustomerPanel.borrowingListPanel.repaint();
+
+            // // repaint
+            // plist.repaint();
         }
     }
 
@@ -117,19 +140,19 @@ public class ProductListPanel extends JPanel {
         label.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         label.setHorizontalAlignment(JLabel.CENTER);
 
-        list = new JList<String>(listModel);
-        list.setVisibleRowCount(10);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        list.setBackground(Color.WHITE);
-        list.setForeground(Color.BLACK);
-        list.setFont(new Font("Arial", Font.PLAIN, 40));
-        list.setSelectedIndex(0);
-        list.setSelectionBackground(Color.BLACK);
-        list.setSelectionForeground(Color.WHITE);
-        list.setVisible(true);
+        plist = new JList<String>(plistModel);
+        plist.setVisibleRowCount(10);
+        plist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        plist.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        plist.setBackground(Color.WHITE);
+        plist.setForeground(Color.BLACK);
+        plist.setFont(new Font("Arial", Font.PLAIN, 40));
+        plist.setSelectedIndex(0);
+        plist.setSelectionBackground(Color.BLACK);
+        plist.setSelectionForeground(Color.WHITE);
+        plist.setVisible(true);
 
-        JScrollPane scrollPanel = new JScrollPane(list);
+        JScrollPane scrollPanel = new JScrollPane(plist);
         scrollPanel.createVerticalScrollBar();
         scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 

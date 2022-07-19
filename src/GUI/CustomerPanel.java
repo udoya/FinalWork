@@ -22,6 +22,10 @@ public class CustomerPanel extends JPanel {
     JButton signInBtn;
     JButton signUpBtn;
     JButton quitButton;
+    HeaderPanel headerPanel;
+
+    public static ProductListPanel productListPanel;
+    public static BorrowingListPanel borrowingListPanel;
 
     /* ActionListener */
     class BtnAction implements ActionListener {
@@ -30,23 +34,40 @@ public class CustomerPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
+            // if push search / borrow / return button, refresh the list of products
+            if (command.equals("Search")) {
+                // console
+                System.out.println("Search");
+                productListPanel.setProductList();
+                borrowingListPanel.setBorrowingList();
+            } else if (command.equals("Borrow")) {
+                productListPanel.setProductList();
+                borrowingListPanel.setBorrowingList();
+            } else if (command.equals("Return")) {
+                productListPanel.setProductList();
+                borrowingListPanel.setBorrowingList();
+            }
         }
+    }
+
+    public void changeUserLabel(String uID) {
+        headerPanel.changeUserLabel(uID);
     }
 
     public void prepareComponents() {
         this.setLayout(new BorderLayout());
-        HeaderPanel headerPanel = new HeaderPanel(0);
+        headerPanel = new HeaderPanel(0);
         // resize
         headerPanel.setPreferredSize(new Dimension(Main.WIDTH, Main.HEIGHT / 12));
 
         FooterPanel footerPanel = new FooterPanel();
-        ProductListPanel productListPanel = new ProductListPanel();
-        JPanel a = new JPanel();
+        productListPanel = new ProductListPanel();
+        borrowingListPanel = new BorrowingListPanel();
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(1, 2));
         centerPanel.add(productListPanel);
-        centerPanel.add(a);
+        centerPanel.add(borrowingListPanel);
         // centerPanel color
         centerPanel.setBackground(Color.DARK_GRAY);
 

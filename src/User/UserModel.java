@@ -38,6 +38,13 @@ public class UserModel {
     }
 
     /**
+     * Get size of user list
+     */
+    public int getUserListSize() {
+        return userList.size();
+    }
+
+    /**
      * Get the user with the given ID
      *
      * @param id the ID to find
@@ -50,7 +57,18 @@ public class UserModel {
         }
         return null;
     }
-    
+
+    /**
+     * Get username by id
+     */
+    public String getUserName(String id) {
+        int index = checkID(id);
+        if (index >= 0) {
+            return userList.get(index).getName();
+        }
+        return null;
+    }
+
     /**
      * Get list of User by name (partially match)
      * 

@@ -22,8 +22,18 @@ public class Main {
             pModel.addProduct(new Product("White Wooden Table", 25));
             pModel.addProduct(new Product("Black Wooden Chair", 10));
             pModel.addProduct(new Product("Black Wooden Table", 35));
+            pModel.addProduct(new Product("Metal Table", 6));
+            uModel.addUser(new Customer("Yamada", "c2", "c2"));
             uModel.addUser(new Customer("Taro Tanaka", "customer1", "123456"));
+            uModel.addUser(new Staff("Udoya", "admin", "admin"));
             uID = "customer1";
+
+            Customer c = (Customer) uModel.getUser(uID);
+            Product p = pModel.getProduct("Wooden Chair");
+            int bn = 3;
+            p.borrowThis(c, bn);
+            c.borrowItem(p, bn);
+
         } catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -35,7 +45,7 @@ public class Main {
         mainWindow = new MainWindow();
         mainWindow.preparePanels();
         mainWindow.prepareComponents();
-        mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
+        mainWindow.setFrontScreenAndFocus(ScreenMode.LOGIN);
 
         mainWindow.setVisible(true);
     }
