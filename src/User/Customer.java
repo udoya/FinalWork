@@ -24,8 +24,8 @@ public class Customer extends User {
         return borrowingList.get(name);
     }
 
-    /* Setter */
 
+    /* Controller */
     /**
      * Add a product to the borrowing list
      * 
