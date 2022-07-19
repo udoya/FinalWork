@@ -29,6 +29,48 @@ public class ProductModel {
     public Product getProduct(int index) {
         return pList.get(index);
     }
+    
+    /**
+     * Get product by name
+     * 
+     * @param name
+     * @return product
+     */
+    public Product getProduct(String name) {
+        for (Product p : pList) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get index of product by name
+     * @param s
+     * @return index or -1 if not found
+     */
+    public int getIndex(String s) {
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getName().equals(s)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    /**
+     * Get index of given product
+     * @param p
+     * @return index or -1 if not found
+     */
+    public int getIndex(Product p) {
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getName().equals(p.getName())) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     /**
      * Get list of product by name (partially match)
@@ -47,6 +89,7 @@ public class ProductModel {
         return found;
     }
 
+
     /* Setter */
     /**
      * Add a product to the product list
@@ -61,15 +104,6 @@ public class ProductModel {
         }
         pList.add(p);
         System.out.println("Product:" + p.getName() + "added");
-    }
-
-    private int getIndex(Product p) {
-        for (int i = 0; i < pList.size(); i++) {
-            if (pList.get(i).getName().equals(p.getName())) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     /**

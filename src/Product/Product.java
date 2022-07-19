@@ -4,6 +4,8 @@ import java.util.TreeMap;
 import java.io.File;
 import java.io.IOException;
 
+import User.*;
+
 /*
  * Product class
  * - name: name of the product
@@ -64,6 +66,28 @@ public class Product {
         }
     }
 
+    /**
+     * Show product information
+     * @return "ProductName Available/Total"
+     */
+    public String getProductString(int index) {
+        String result = "";
+        result += name + " " + numAvailable + "/" + numTotal;
+        return result;
+    }
+
+    /**
+     * Show Lending List
+     * @return List of "UserID: QUantity"
+     */
+    public String getLendingListString() {
+        String result = "";
+        for (String key : lendingList.keySet()) {
+            result += key + ": " + lendingList.get(key) + "\n";
+        }
+        return result;
+    }
+
     public File getImageFile() {
         return imageFile;
     }
@@ -98,7 +122,8 @@ public class Product {
      * @param id:  the ID of the customer
      * @param num: the number of the products that are being borrowed
      */
-    public void borrowThis(String id, int num) {
+    public void borrowThis(Customer c, int num) {
+        String id = c.getID();
         if (this.numAvailable >= num) {
             this.numAvailable -= num;
             if (this.lendingList.containsKey(id)) {
@@ -114,7 +139,8 @@ public class Product {
      * @param id:  the ID of the customer
      * @param num: the number of the products that are being returned
      */
-    public void returnThis(String id, int num) {
+    public void returnThis(Customer c, int num) {
+        String id = c.getID();
         if (this.lendingList.containsKey(id)) {
             if (this.lendingList.get(id) >= num) {
                 this.numAvailable += num;

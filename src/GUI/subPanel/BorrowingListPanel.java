@@ -24,82 +24,77 @@ public class BorrowingListPanel extends JPanel {
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
     String uID = Main.uID;
+    Customer c = uModel.getCustomer(uID);
 
-    
     public void setBorrowingList() {
         listModel = new DefaultListModel<>();
         productIdList = new ArrayList<Integer>();
 
-        // "ProductName Available/Total"
-        for (int i = 0; i < pModel.getProductListSize(); i++) {
-            Product p = pModel.getProduct(i);
-            listModel.addElement(p.getName() + " " + p.getNumAvailable() + "/" + p.getNumTotal());
-            productIdList.add(i);
+        String[] names = c.getBorrowingItemName();
+        for (String name : names) {
+            listModel.addElement(name + " " + c.getBorrowingNumber(name));
+            productIdList.add(pModel.getIndex(name));
         }
     }
 
-    class SearchBtnAction implements ActionListener {
+
+    class ReturnBtnAction implements ActionListener {
+        CustomerController CC = new CustomerController();
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            listModel = new DefaultListModel<>();
-            productIdList = new ArrayList<Integer>();
+            int rNum = Integer.parseInt(returnField.getText());
 
-            String tempText = searchField.getText();
-            for (int i = 0; i < pModel.getProductListSize(); i++) {
-                Product p = pModel.getProduct(i);
-                // TODO: now, search with distinct product name(upper and lower case)
-                if (p.getName().contains(tempText)) {
-                    listModel.addElement(p.getName() + " " + p.getNumAvailable() + "/" +
-                            p.getNumTotal());
-                    productIdList.add(i);
-                }
+            int index = list.getSelectedIndex();
+            if (index == -1) {
+                JOptionPane.showMessageDialog(null, "Please select a product to return.");
+                return;
             }
-            // update list
-            list.setModel(listModel);
-        }
-    }
+            int productId = productIdList.get(index);
+            Product p = pModel.getProduct(productId);
+            Customer c = uModel.getCustomer(uID);
+            switch(CC.returnProduct(p, c, rNum)) {
 
-    /**
-     * @see GUI.Controller.CustomerController#borrowProduct(Product, Customer, int)
-     */
+            }
+        }
+
+    }
     class BorrowBtnAction implements ActionListener {
         CustomerController CC = new CustomerController();
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int bNum = Integer.valueOf(borrowField.getText());
+            int bNum = Integer.parseInt(borrowField.getText());
 
             int index = list.getSelectedIndex();
             if (index == -1) {
                 JOptionPane.showMessageDialog(null, "Please select a product");
                 return;
-            } else {
-                int pId = productIdList.get(index);
-                Product p = pModel.getProduct(pId);
-                Customer c = uModel.getCustomer(uID);
-                switch (CC.borrowProduct(p, c, bNum)) {
-                    case -1:
-                        JOptionPane.showMessageDialog(null, "Input positive number.");
-                        break;
-                    case 1:
-                        JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null,
-                                "You borrowed " + bNum + " " + p.getName() + " successfully.");
-                        break;
-                }
-                pModel.updateProduct(p);
-                // System.out.println("Av:" + p.getNumAvailable());
-                // System.out.println("To:" + p.getNumTotal());
-                // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());
-                // System.out.println(pModel.getProduct(productIdList.get(index)).getNumTotal());
-                setProductList();
-
-                // update list
-                list.setModel(listModel);
-
             }
+            int pId = productIdList.get(index);
+            Product p = pModel.getProduct(pId);
+            Customer c = uModel.getCustomer(uID);
+            switch (CC.borrowProduct(p, c, bNum)) {
+                case -1:
+                    JOptionPane.showMessageDialog(null, "Input positive number.");
+                    break;
+                case 1:
+                    JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null,
+                            "You borrowed " + bNum + " " + p.getName() + " successfully.");
+                    break;
+            }
+            pModel.updateProduct(p);
+            // System.out.println("Av:" + p.getNumAvailable());
+            // System.out.println("To:" + p.getNumTotal());
+            // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());
+            // System.out.println(pModel.getProduct(productIdList.get(index)).getNumTotal());
+            setProductList();
+
+            // update list
+            list.setModel(listModel);
         }
     }
 
