@@ -45,22 +45,23 @@ public class MainWindow extends JFrame {
         this.add(customerPanel, "Customer");
         this.pack();
 
-        // staffPanel = new StaffPanel();
-        // this.add(staffPanel, "Staff");
-        // this.pack();
-        // System.out.println("test2");
+        staffPanel = new StaffPanel();
+        this.add(staffPanel, "Staff");
+        this.pack();
+        System.out.println("test2");
     }
 
     public void prepareComponents() {
         lgPanel.prepareComponents();
         signUpPanel.prepareComponents();
         customerPanel.prepareComponents();
-        // staffPanel.prepareComponents();
+        staffPanel.prepareComponents();
     }
 
     public void setFrontScreenAndFocus(ScreenMode s) {
         if (this.screenMode == ScreenMode.LOGIN && s != ScreenMode.LOGIN) {
             customerPanel.changeUserLabel(Main.uID);
+            staffPanel.changeUserLabel(Main.uID);
         }
 
         this.screenMode = s;

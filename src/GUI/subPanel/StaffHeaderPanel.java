@@ -7,26 +7,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class HeaderPanel extends JPanel {
+public class StaffHeaderPanel extends JPanel {
     private static final long serialVersionUID = 1L;
-    JButton mainBtn;
-    JButton infoBtn;
+    JButton productBtn;
+    JButton userBtn;
     JButton signOutBtn;
     private JLabel userNameLabel;
-    private JLabel userRoleLabel;
 
     public void changeUserLabel(String uID) {
         User user = Main.uModel.getUser(uID);
-        userNameLabel.setText("User Name: " + user.getName());
-        userRoleLabel.setText("Role: " + user.getRole());
+        userNameLabel.setText("Staff: " + user.getName());
     }
 
     class BtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            if (e.getSource() == mainBtn) {
+            if (e.getSource() == productBtn) {
             }
-            if (e.getSource() == infoBtn) {
+            if (e.getSource() == userBtn) {
             }
             if (e.getSource() == signOutBtn) {
                 // make option pane for confirm sign out
@@ -40,64 +38,45 @@ public class HeaderPanel extends JPanel {
         }
     }
 
-    public HeaderPanel(int BtnIndex) {
-
+    public StaffHeaderPanel(int BtnIndex) {
         // header 1*6
-        this.setLayout(new GridLayout(0, 6, 0, 0));
+        this.setLayout(new GridLayout(0, 4, 0, 0));
 
         // init btn
-        mainBtn = new JButton("Main");
-        infoBtn = new JButton("Info");
+        productBtn = new JButton("Product");
+        userBtn = new JButton("User");
         signOutBtn = new JButton("Sign Out");
         signOutBtn.addActionListener(new BtnAction());
-
-        // 3 of the test btn
-        JButton testBtn = new JButton("Test");
-        JButton testBtn2 = new JButton("Test2");
-        JButton testBtn3 = new JButton("Test3");
 
         // show user name and role
         User user = Main.uModel.getUser(Main.uID);
         // print uid
         System.out.println(Main.uID);
-        userNameLabel = new JLabel("User Name: " + user.getName());
-        userRoleLabel = new JLabel("Role: " + user.getRole());
+        userNameLabel = new JLabel("Staff:  " + user.getName());
 
         // Label setting fonts
         userNameLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        userRoleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         userNameLabel.setHorizontalAlignment(JLabel.CENTER);
-        userRoleLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // for all btn, change font size
-        mainBtn.setFont(new Font("Arial", Font.BOLD, 20));
-        infoBtn.setFont(new Font("Arial", Font.BOLD, 20));
+        productBtn.setFont(new Font("Arial", Font.BOLD, 20));
+        userBtn.setFont(new Font("Arial", Font.BOLD, 20));
         signOutBtn.setFont(new Font("Arial", Font.BOLD, 20));
-        testBtn.setFont(new Font("Arial", Font.BOLD, 20));
-        testBtn2.setFont(new Font("Arial", Font.BOLD, 20));
-        testBtn3.setFont(new Font("Arial", Font.BOLD, 20));
 
         // set btn color depend on BtnIndex
         switch (BtnIndex) {
             case 0:
-                mainBtn.setBackground(Color.cyan);
+                productBtn.setBackground(Color.cyan);
                 break;
             case 1:
                 // change info
-                infoBtn.setBackground(Color.cyan);
-
-                break;
-            case 2:
-                // change sign out
-                signOutBtn.setBackground(Color.cyan);
+                userBtn.setBackground(Color.cyan);
                 break;
         }
 
-        this.add(mainBtn);
-        this.add(infoBtn);
-        this.add(testBtn);
         this.add(userNameLabel);
-        this.add(userRoleLabel);
+        this.add(productBtn);
+        this.add(userBtn);
         this.add(signOutBtn);
     }
 }

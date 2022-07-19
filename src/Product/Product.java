@@ -68,6 +68,7 @@ public class Product {
 
     /**
      * Show product information
+     * 
      * @return "ProductName Available/Total"
      */
     public String getProductString(int index) {
@@ -78,6 +79,7 @@ public class Product {
 
     /**
      * Show Lending List
+     * 
      * @return List of "UserID: Quantity"
      */
     public String[] getLendingListString() {
@@ -99,16 +101,19 @@ public class Product {
         this.name = name;
     }
 
-    public void setNumTotal(int numTotal) throws IllegalArgumentException {
-        if (numTotal < numAvailable) {
+    public void setNumTotal(int newTotal) throws IllegalArgumentException {
+        int dif = newTotal - this.numTotal;
+        int newAva = this.numAvailable + dif;
+        if (newAva < 0) {
             throw new IllegalArgumentException();
         }
-        this.numTotal = numTotal;
+        this.numTotal = newTotal;
+        this.numAvailable = newAva;
     }
 
-    public void setNumAvailable(int numAvailable) {
-        this.numAvailable = numAvailable;
-    }
+    // public void setNumAvailable(int numAvailable) {
+    // this.numAvailable = numAvailable;
+    // }
 
     public void setLendingList(TreeMap<String, Integer> lendingList) {
         this.lendingList = lendingList;
@@ -138,6 +143,7 @@ public class Product {
             }
         }
     }
+
     /**
      * Use when a customer returns
      * 
@@ -160,46 +166,47 @@ public class Product {
         }
     }
 
-
     // /**
-    //  * Change the number of lending.
-    //  ** Use when a customer returns or borrows additionally.
-    //  * 
-    //  * @param id:        ID of the customer
-    //  * @param borrowNum: the number of borrowing (positive) or returning (negative)
-    //  */
+    // * Change the number of lending.
+    // ** Use when a customer returns or borrows additionally.
+    // *
+    // * @param id: ID of the customer
+    // * @param borrowNum: the number of borrowing (positive) or returning
+    // (negative)
+    // */
     // void changeNumLending(int id, int borrowNum) {
-    //     final int currentNum;
+    // final int currentNum;
 
-    //     // check whether the AvailableNum - borrowNum is negative or not.
-    //     if (this.numAvailable < borrowNum) {
-    //         // TODO: error
-    //         System.out.println("Error: The number of available products is not enough.");
-    //         return;
-    //     }
+    // // check whether the AvailableNum - borrowNum is negative or not.
+    // if (this.numAvailable < borrowNum) {
+    // // TODO: error
+    // System.out.println("Error: The number of available products is not enough.");
+    // return;
+    // }
 
-    //     // check whether the lendingTreeMap contains the ID or not.
-    //     if (lendingList.containsKey(id)) {
-    //         currentNum = lendingList.get(id);
-    //     } else {
-    //         currentNum = 0;
-    //     }
+    // // check whether the lendingTreeMap contains the ID or not.
+    // if (lendingList.containsKey(id)) {
+    // currentNum = lendingList.get(id);
+    // } else {
+    // currentNum = 0;
+    // }
 
-    //     // change the number of lending.
-    //     int afterNum = currentNum + borrowNum;
+    // // change the number of lending.
+    // int afterNum = currentNum + borrowNum;
 
-    //     if (afterNum < 0) {
-    //         // TODO: error setting
-    //         System.out.println("Error: you can't borrow negative number of products.");
-    //         return;
-    //     }
+    // if (afterNum < 0) {
+    // // TODO: error setting
+    // System.out.println("Error: you can't borrow negative number of products.");
+    // return;
+    // }
 
-    //     // change the number of lending.
-    //     lendingList.put(id, afterNum);
-    //     // change the number of available products.
-    //     this.numAvailable -= borrowNum;
+    // // change the number of lending.
+    // lendingList.put(id, afterNum);
+    // // change the number of available products.
+    // this.numAvailable -= borrowNum;
 
-    //     System.out.println("Product: " + this.name + " has been added as " + numAvailable + ".");
-    //     System.out.println("Now you have " + afterNum + " of " + this.name + ".");
+    // System.out.println("Product: " + this.name + " has been added as " +
+    // numAvailable + ".");
+    // System.out.println("Now you have " + afterNum + " of " + this.name + ".");
     // }
 }

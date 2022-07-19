@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class StaffPanel extends JPanel {
 
+    StaffHeaderPanel headerPanel;
     private static final long serialVersionUID = 1L;
     JComboBox<String> comboBox;
 
@@ -40,24 +41,29 @@ public class StaffPanel extends JPanel {
         // comboBox.addItem("test");
         // comboBox.addItem("test2");
         // comboBox.addItem("test1");
+    }
 
+    public void changeUserLabel(String uID) {
+        headerPanel.changeUserLabel(uID);
     }
 
     public void prepareComponents() {
 
         // create JComboBox
-        initComboBox();
-        this.add(comboBox);
-        comboBox.setBounds(100, 200, 200, 20);
+        // initComboBox();
+        // this.add(comboBox);
+        // comboBox.setBounds(100, 200, 200, 20);
 
         this.setLayout(new BorderLayout());
-        HeaderPanel headerPanel = new HeaderPanel(1);
+        headerPanel = new StaffHeaderPanel(0);
         // resize
         headerPanel.setPreferredSize(new Dimension(Main.WIDTH, Main.HEIGHT / 12));
         FooterPanel footerPanel = new FooterPanel();
 
-        this.add(headerPanel, BorderLayout.NORTH);
+        StaffProductPanel productPanel = new StaffProductPanel();
 
+        this.add(headerPanel, BorderLayout.NORTH);
+        this.add(productPanel, BorderLayout.CENTER);
         this.add(footerPanel, BorderLayout.SOUTH);
 
         // color
