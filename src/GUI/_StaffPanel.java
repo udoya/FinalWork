@@ -50,7 +50,14 @@ public class _StaffPanel extends JFrame implements ActionListener {
         uLabel = new JLabel("User");
 
         JPanel comboPanel = new JPanel();
+        comboPanel.add(pLabel);
+        comboPanel.add(pCombo);
+        comboPanel.add(uLabel);
+        comboPanel.add(uCombo);
+        
+        
 
+        /*
         String[] startTime = { "08:00", "09:00", "10:00", "11:00",
                 "12:00", "13:00", "14:00", "15:00",
                 "16:00", "17:00", "18:00", "19:00" };
@@ -81,9 +88,17 @@ public class _StaffPanel extends JFrame implements ActionListener {
 
         getContentPane().add(p, BorderLayout.CENTER);
         getContentPane().add(labelPanel, BorderLayout.PAGE_END);
+        */
     }
 
     public void actionPerformed(ActionEvent e) {
+        static int pIndex = pCombo.getSelectedIndex();
+        static int uIndex = uCombo.getSelectedIndex();
+
+        static boolean isProduct = true;
+
+        if (isProduct)
+
         String start;
         String end;
 
