@@ -25,6 +25,7 @@ public class LoginController {
             return 0;
         } else {
             loginCount = 0;
+            Main.uID = ID;
             if (user.isMaster()) {
                 return 1;
             } else {

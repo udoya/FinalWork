@@ -9,6 +9,7 @@ public class Main {
     public static final int HEIGHT = MainWindow.HEIGHT;
     public static ProductModel pModel;
     public static UserModel uModel;
+    public static String uID;
 
     public static void main(String[] args) {
         pModel = new ProductModel();
@@ -21,6 +22,8 @@ public class Main {
             pModel.addProduct(new Product("White Wooden Table", 25));
             pModel.addProduct(new Product("Black Wooden Chair", 10));
             pModel.addProduct(new Product("Black Wooden Table", 35));
+            uModel.addUser(new Customer("Taro Tanaka", "customer1", "123456"));
+            uID = "customer1";
         } catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
