@@ -78,12 +78,14 @@ public class Product {
 
     /**
      * Show Lending List
-     * @return List of "UserID: QUantity"
+     * @return List of "UserID: Quantity"
      */
-    public String getLendingListString() {
-        String result = "";
+    public String[] getLendingListString() {
+        String[] result = new String[lendingList.size()];
+        int i = 0;
         for (String key : lendingList.keySet()) {
-            result += key + ": " + lendingList.get(key) + "\n";
+            result[i] = key + ": " + lendingList.get(key);
+            i++;
         }
         return result;
     }
@@ -97,7 +99,10 @@ public class Product {
         this.name = name;
     }
 
-    public void setNumTotal(int numTotal) {
+    public void setNumTotal(int numTotal) throws IllegalArgumentException {
+        if (numTotal < numAvailable) {
+            throw new IllegalArgumentException();
+        }
         this.numTotal = numTotal;
     }
 

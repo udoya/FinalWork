@@ -86,7 +86,13 @@ public class ProductListPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int bNum = Integer.parseInt(borrowField.getText());
+            int bNum;
+            try {
+                bNum = Integer.parseInt(borrowField.getText());
+            } catch (NumberFormatException e1) {
+                JOptionPane.showMessageDialog(null, "Please enter a positive number.");
+                return;
+            }
 
             int index = plist.getSelectedIndex();
             if (index == -1) {
@@ -98,7 +104,7 @@ public class ProductListPanel extends JPanel {
             Customer c = (Customer) uModel.getUser(uID);
             switch (CC.borrowProduct(p, c, bNum)) {
                 case -1:
-                    JOptionPane.showMessageDialog(null, "Please enter positive number.");
+                    JOptionPane.showMessageDialog(null, "Please enter a positive number.");
                     break;
                 case 1:
                     JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");

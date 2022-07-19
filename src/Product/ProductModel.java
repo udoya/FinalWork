@@ -111,9 +111,14 @@ public class ProductModel {
      * 
      * @param p the product to be removed
      */
-    public void removeProduct(Product p) {
+    public void removeProduct(Product p) throws Exception {
         int index = getIndex(p);
-        pList.remove(index);
+        if (pList.get(index).equals(p)) {
+            pList.remove(index);
+            System.out.println("Product:" + p.getName() + "removed");
+        } else {
+            throw new Exception("Product not found");
+        }
     }
 
     public void changeName(Product p, String newName) {

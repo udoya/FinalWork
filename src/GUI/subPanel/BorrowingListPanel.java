@@ -43,8 +43,13 @@ public class BorrowingListPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            int rNum = Integer.parseInt(returnField.getText());
+            int rNum;
+            try {
+                rNum = Integer.parseInt(returnField.getText());
+            } catch (NumberFormatException e1) {
+                JOptionPane.showMessageDialog(null, "Please enter a positive number.");
+                return;
+            }
 
             int index = blist.getSelectedIndex();
             if (index == -1) {
