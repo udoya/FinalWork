@@ -12,6 +12,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+//BUG cannot borrow more than harf. (if borrow more than half, it will be bug)
+//BUG cannot borrow things that already borrowed. (if borrow things that already borrowed, it will be bug)
+
 // For left side of Customer Panel
 // Contains: Search Panel(field & button), Product List Panel(Scroll), Borrow Panel(field & button)
 public class ProductListPanel extends JPanel {

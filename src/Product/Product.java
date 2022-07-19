@@ -129,7 +129,7 @@ public class Product {
     /**
      * Use when a customer borrows
      * 
-     * @param id:  the ID of the customer
+     * @param c:   the customer
      * @param num: the number of the products that are being borrowed
      */
     public void borrowThis(Customer c, int num) {
