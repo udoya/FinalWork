@@ -194,17 +194,18 @@ public class StaffProductPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int index = combo.getSelectedIndex();
                 Product p = pModel.getProduct(index - 1); // index:0 is "New Product"
-            
+
                 // get new name
                 String name = nameField.getText();
+                String oldName = p.getName();
+                // care about duplicate name
+                if (pModel.getProduct(name) != null && !name.equals(oldName)) {
+                    JOptionPane.showMessageDialog(null, "Same name already exists.");
+                    return;
+                }
                 // if name is empty, use old name
                 if (name.equals("")) {
-                    name = p.getName();
-                }
-                // care about duplicate name
-                if (pModel.getProduct(name) != null) {
-                    JOptionPane.showMessageDialog(null, "Name is duplicate");
-                    return;
+                    name = oldName;
                 }
 
                 // get new total
