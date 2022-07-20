@@ -223,7 +223,7 @@ public class StaffProductPanel extends JPanel {
                 }
 
                 // update product
-                pModel.updateProduct(p, new Product(name, total));
+                pModel.updateProduct(p, name, total);
 
                 // refresh comboBox
                 setProductList();

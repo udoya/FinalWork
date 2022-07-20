@@ -138,11 +138,13 @@ public class ProductModel {
         }
     }
 
-    public void updateProduct(Product oldP, Product newP) {
-        int index = getIndex(oldP);
+    public void updateProduct(Product p, String name, int total) {
+        int index = getIndex(p);
+        p.setName(name);
+        p.setNumTotal(total);
         if (index >= 0) {
-            pList.set(index, newP);
-            System.out.println("Product:" + newP.getName() + "is updated");
+            pList.set(index, p);
+            System.out.println("Product:" + p.getName() + "is updated");
         }
     }
 
