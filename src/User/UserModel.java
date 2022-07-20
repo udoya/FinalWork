@@ -115,29 +115,21 @@ public class UserModel {
     }
 
     /**
-     * Update a user
+     * Update a user by replacing
      * 
-     * @param user
+     * @param user the user to update
+     * @param name new one
+     * @param id new one
+     * @param password new one
      */
-    public void updateUser(User user) {
+    public void updateUser(User user, String name, String id, String password) {
         int index = checkID(user.getID());
+        user.setName(name);
+        user.setID(id);
+        user.setPassword(password);
         if (index >= 0) {
             userList.set(index, user);
             System.out.println("User " + user.getName() + " is updated.");
-        }
-    }
-
-    /**
-     * Update a user by replacing
-     * 
-     * @param oldUser
-     * @param newUser
-     */
-    public void updateUser(User oldUser, User newUser) {
-        int index = checkID(oldUser.getID());
-        if (index >= 0) {
-            userList.set(index, newUser);
-            System.out.println("User " + newUser.getName() + " is updated.");
         }
     }
 

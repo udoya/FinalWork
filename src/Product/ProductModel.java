@@ -128,16 +128,10 @@ public class ProductModel {
     /**
      * Update product
      * 
-     * @param p
+     * @param p the product to be updated
+     * @param name new name
+     * @param total new total 
      */
-    public void updateProduct(Product p) {
-        int index = getIndex(p);
-        if (index >= 0) {
-            pList.set(index, p);
-            System.out.println("Product:" + p.getName() + "is updated");
-        }
-    }
-
     public void updateProduct(Product p, String name, int total) {
         int index = getIndex(p);
         p.setName(name);

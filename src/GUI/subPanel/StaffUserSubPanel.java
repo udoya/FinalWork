@@ -230,7 +230,7 @@ public class StaffUserSubPanel extends JPanel {
                 }
 
                 // update user
-                uModel.updateUser(u, new User(name, ID, pwd));
+                uModel.updateUser(u, name, ID, pwd);
 
                 // refresh comboBox
                 setUserList();
