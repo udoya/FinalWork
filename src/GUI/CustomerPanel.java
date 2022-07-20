@@ -24,8 +24,8 @@ public class CustomerPanel extends JPanel {
     JButton quitButton;
     HeaderPanel headerPanel;
 
-    public static ProductListPanel productListPanel;
-    public static BorrowingListPanel borrowingListPanel;
+    public static CustomerProductPanel productListPanel;
+    public static CustomerBorrowingPanel borrowingListPanel;
 
     /* ActionListener */
     class BtnAction implements ActionListener {
@@ -61,8 +61,8 @@ public class CustomerPanel extends JPanel {
         headerPanel.setPreferredSize(new Dimension(Main.WIDTH, Main.HEIGHT / 12));
 
         FooterPanel footerPanel = new FooterPanel();
-        productListPanel = new ProductListPanel();
-        borrowingListPanel = new BorrowingListPanel();
+        productListPanel = new CustomerProductPanel();
+        borrowingListPanel = new CustomerBorrowingPanel();
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(1, 2));
