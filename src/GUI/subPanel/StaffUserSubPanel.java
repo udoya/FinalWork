@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.*;
 import java.awt.event.*;
 
-public class StaffUserPanel extends JPanel {
+public class StaffUserSubPanel extends JPanel {
     InfoPanel infoPanel;
     ComboPanel comboPanel;
     ListPanel listPanel;
@@ -385,13 +385,12 @@ public class StaffUserPanel extends JPanel {
         }
     }
 
-
     public void prepareComponents() {
         ComboPanel comboPanel = new ComboPanel();
         add(comboPanel);
     }
 
-    public StaffUserPanel() {
+    public StaffUserSubPanel() {
         comboPanel = new ComboPanel();
         infoPanel = new InfoPanel();
         listPanel = new ListPanel();

@@ -6,5 +6,6 @@ public enum ScreenMode {
     SIGNUP,
     CUSTOMER,
     CUSTOMER2,
-    STAFF
+    STAFF,
+    STAFF_USER
 }

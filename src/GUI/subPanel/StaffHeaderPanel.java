@@ -23,8 +23,10 @@ public class StaffHeaderPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
 
             if (e.getSource() == productBtn) {
+                Main.mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF);
             }
             if (e.getSource() == userBtn) {
+                Main.mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF_USER);
             }
             if (e.getSource() == signOutBtn) {
                 // make option pane for confirm sign out
@@ -46,6 +48,10 @@ public class StaffHeaderPanel extends JPanel {
         productBtn = new JButton("Product");
         userBtn = new JButton("User");
         signOutBtn = new JButton("Sign Out");
+
+        // set action
+        productBtn.addActionListener(new BtnAction());
+        userBtn.addActionListener(new BtnAction());
         signOutBtn.addActionListener(new BtnAction());
 
         // show user name and role

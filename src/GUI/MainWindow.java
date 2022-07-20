@@ -17,6 +17,7 @@ public class MainWindow extends JFrame {
     SignUpPanel signUpPanel;
     CustomerPanel customerPanel;
     StaffPanel staffPanel;
+    StaffUserPanel staffUserPanel;
 
     MainWindow() {
         this.setTitle("Store Management System");
@@ -48,7 +49,11 @@ public class MainWindow extends JFrame {
         staffPanel = new StaffPanel();
         this.add(staffPanel, "Staff");
         this.pack();
-        System.out.println("test2");
+
+        staffUserPanel = new StaffUserPanel();
+        this.add(staffUserPanel, "StaffUser");
+        this.pack();
+
     }
 
     public void prepareComponents() {
@@ -56,6 +61,7 @@ public class MainWindow extends JFrame {
         signUpPanel.prepareComponents();
         customerPanel.prepareComponents();
         staffPanel.prepareComponents();
+        staffUserPanel.prepareComponents();
     }
 
     public void setFrontScreenAndFocus(ScreenMode s) {
@@ -100,6 +106,11 @@ public class MainWindow extends JFrame {
                 layout.show(this.getContentPane(), "Staff");
                 staffPanel.requestFocus();
                 break;
+            case STAFF_USER:
+                layout.show(this.getContentPane(), "StaffUser");
+                staffUserPanel.requestFocus();
+                break;
+
         }
     }
 }
