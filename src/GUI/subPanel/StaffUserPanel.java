@@ -243,6 +243,7 @@ public class StaffUserPanel extends JPanel {
         }
 
         // When adding new User
+        // TODO: JCheckBox seikei please
         InfoPanel() {
             this.setLayout(new FlowLayout());
             this.setPreferredSize(new Dimension(Main.WIDTH / 2, Main.HEIGHT / 2));
@@ -294,7 +295,7 @@ public class StaffUserPanel extends JPanel {
             idPanel.add(idField);
             pwdPanel.add(pwdLabel);
             pwdPanel.add(pwdField);
-            buttonPanel.add(staffCheck);
+            buttonPanel.add(staffCheckBox);
             buttonPanel.add(addButton);
             add(namePanel);
             add(idPanel);
