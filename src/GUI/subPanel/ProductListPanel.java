@@ -96,7 +96,6 @@ public class ProductListPanel extends JPanel {
                 JOptionPane.showMessageDialog(null, "Please enter a positive number.");
                 return;
             }
-
             int index = plist.getSelectedIndex();
             if (index == -1) {
                 JOptionPane.showMessageDialog(null, "Please select a product");
@@ -112,12 +111,16 @@ public class ProductListPanel extends JPanel {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Sorry, not enough stock.");
                     break;
-                default:
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Sorry, something happened.");
+                    break;
+                case 0:
                     JOptionPane.showMessageDialog(null,
                             "You borrowed " + bNum + " " + p.getName() + " successfully.");
                     break;
             }
             pModel.updateProduct(p);
+            System.out.println(c.getBorrowingItemName());
             uModel.updateUser(c);
             // System.out.println("Av:" + p.getNumAvailable());
             // System.out.println("To:" + p.getNumTotal());

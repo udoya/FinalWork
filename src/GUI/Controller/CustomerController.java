@@ -12,14 +12,19 @@ public class CustomerController {
      * @param bNum
      * @return -1: Invalid bNum, 0: Successful borrow, 1: Borrow much more than available
      */
-    public int borrowProduct(Product product, Customer customer, int bNum) {
-        if (bNum < 0) {
+    public int borrowProduct(Product p, Customer c, int num) {
+        if (num <= 0) {
             return -1;
         }
-        if (product.getNumAvailable() >= bNum) {
-            product.borrowThis(customer, bNum);
-            customer.borrowItem(product, bNum);
-            System.out.println(customer.getName() + " just borrowed " + product.getName() + " " + customer.getBorrowingNumber(product));
+        if (p.getNumAvailable() >= num) {
+            try {
+                c.borrowItem(p, num);
+                p.borrowThis(c, num);
+            } catch (Exception e) {
+                return 2;
+            }
+
+            System.out.println(c.getName() + " just borrowed " + p.getName() + " " + num);
             return 0;
         } else {
             return 1;
@@ -33,14 +38,18 @@ public class CustomerController {
      * @param rNum
      * @return -1: Invalid rNum, 0: Successful return, 1: Return much more than borrowed
      */
-    public int returnProduct(Product product, Customer customer, int rNum) {
-        if (rNum < 0) {
+    public int returnProduct(Product p, Customer c, int num) {
+        if (num <= 0) {
             return -1;
         }
-        if (customer.getBorrowingNumber(product) >= rNum) {
-            product.returnThis(customer, rNum);
-            customer.returnItem(product, rNum);
-            System.out.println(customer.getName() + " just returned " + product.getName() + " " + customer.getBorrowingNumber(product));
+        if (c.getBorrowingNumber(p) >= num) {
+            try {
+                p.returnThis(c, num);
+                c.returnItem(p, num);
+            } catch (Exception e) {
+                return 2;
+            }
+            System.out.println(c.getName() + " just returned " + p.getName() + " " + num);
             return 0;
         } else {
             return 1;

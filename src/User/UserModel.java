@@ -114,6 +114,7 @@ public class UserModel {
         int index = checkID(user.getID());
         if (index >= 0) {
             userList.remove(index);
+            System.out.println("User " + user.getName() + " is removed.");
             return true;
         }
         return false;
@@ -128,6 +129,7 @@ public class UserModel {
         int index = checkID(user.getID());
         if (index >= 0) {
             userList.set(index, user);
+            System.out.println("User " + user.getName() + " is updated.");
         }
     }
 

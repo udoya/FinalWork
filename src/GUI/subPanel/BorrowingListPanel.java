@@ -67,6 +67,9 @@ public class BorrowingListPanel extends JPanel {
                     JOptionPane.showMessageDialog(null,
                             "Please enter a number less than or equal to " + c.getBorrowingNumber(p));
                     break;
+                case 2: // System Error
+                    JOptionPane.showMessageDialog(null, "Sorry, something happened.");
+                    break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "You returned " + rNum + " " + p.getName() + " successfully.");
                     break;

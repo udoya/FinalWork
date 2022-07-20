@@ -132,15 +132,16 @@ public class Product {
      * @param c:   the customer
      * @param num: the number of the products that are being borrowed
      */
-    public void borrowThis(Customer c, int num) {
+    public void borrowThis(Customer c, int num) throws Exception {
         String id = c.getID();
-        if (this.numAvailable >= num) {
-            this.numAvailable -= num;
-            if (this.lendingList.containsKey(id)) {
-                this.lendingList.put(id, this.lendingList.get(id) + num);
-            } else {
-                this.lendingList.put(id, num);
-            }
+        if (num > numAvailable) {
+            throw new Exception("Not enough products");
+        }
+        this.numAvailable -= num;
+        if (this.lendingList.containsKey(id)) {
+            this.lendingList.put(id, this.lendingList.get(id) + num);
+        } else {
+            this.lendingList.put(id, num);
         }
     }
 
@@ -150,19 +151,19 @@ public class Product {
      * @param id:  the ID of the customer
      * @param num: the number of the products that are being returned
      */
-    public void returnThis(Customer c, int num) {
+    public void returnThis(Customer c, int num) throws Exception {
         String id = c.getID();
-        if (this.lendingList.containsKey(id)) {
-            if (this.lendingList.get(id) >= num) {
-                this.numAvailable += num;
-                if (this.lendingList.get(id) == num) {
-                    this.lendingList.remove(id);
-                } else {
-                    this.lendingList.put(id, this.lendingList.get(id) - num);
-                }
-            } else {
-
-            }
+        if (!this.lendingList.containsKey(id)) {
+            throw new Exception("Not borrowed");
+        }
+        if (this.lendingList.get(id) < num) {
+            throw new Exception("Not enough products");
+        }
+        this.numAvailable += num;
+        if (this.lendingList.get(id) == num) {
+            this.lendingList.remove(id);
+        } else {
+            this.lendingList.put(id, this.lendingList.get(id) - num);
         }
     }
 
