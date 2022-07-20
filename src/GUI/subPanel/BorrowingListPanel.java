@@ -33,7 +33,7 @@ public class BorrowingListPanel extends JPanel {
 
         String[] names = c.getBorrowingItemName();
         for (String name : names) {
-            blistModel.addElement(name + " " + c.getBorrowingNumber(name));
+            blistModel.addElement(name + " " + c.getNumBorrowing(name));
             productIdList.add(pModel.getIndex(name));
         }
     }
@@ -65,7 +65,7 @@ public class BorrowingListPanel extends JPanel {
                     break;
                 case 1:
                     JOptionPane.showMessageDialog(null,
-                            "Please enter a number less than or equal to " + c.getBorrowingNumber(p));
+                            "Please enter a number less than or equal to " + c.getNumBorrowing(p));
                     break;
                 case 2: // System Error
                     JOptionPane.showMessageDialog(null, "Sorry, something happened.");

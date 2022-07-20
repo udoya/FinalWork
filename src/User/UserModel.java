@@ -109,6 +109,15 @@ public class UserModel {
         if (index < 0) {
             throw new Exception("ID not found");
         }
+        if (userList.get(index).getID().equals("admin")) {
+            throw new Exception("Cannot remove admin");
+        }
+        if (!user.isMaster()) {
+            Customer c = (Customer) user;
+            if (c.getNumBorrowing() > 0) {
+                throw new Exception("Cannot remove customer being borrowing");
+            }
+        }
         userList.remove(index);
         System.out.println("User " + user.getName() + " is removed.");
     }

@@ -46,7 +46,7 @@ public class CustomerController {
         if (num <= 0) {
             return -1;
         }
-        if (c.getBorrowingNumber(p) >= num) {
+        if (c.getNumBorrowing(p) >= num) {
             try {
                 p.returnThis(c, num);
                 c.returnItem(p, num);

@@ -35,7 +35,13 @@ public class StaffUserSubPanel extends JPanel {
         listModel.addElement("New Product");
         for (int i = 0; i < uModel.getUserListSize(); i++) {
             User u = uModel.getUserList().get(i);
-            listModel.addElement(u.getName() + " @ " + u.getID());
+            String role;
+            if (u.isMaster()) {
+                role = "Staff";
+            } else {
+                role = "Customer";
+            }
+            listModel.addElement(u.getName() + "@" + role);
         }
     }
 
@@ -162,7 +168,8 @@ public class StaffUserSubPanel extends JPanel {
                         uModel.addUser(new Customer(name, ID, pwd));
                     }
                 } catch (Exception e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
+                    return;
                 }
                 JOptionPane.showMessageDialog(null, "Added new user successfully");
 
@@ -185,7 +192,8 @@ public class StaffUserSubPanel extends JPanel {
                 try {
                     uModel.removeUser(u);
                 } catch (Exception e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
+                    return;
                 }
                 JOptionPane.showMessageDialog(null, "Removed user successfully");
 

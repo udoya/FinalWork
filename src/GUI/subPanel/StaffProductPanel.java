@@ -150,7 +150,7 @@ public class StaffProductPanel extends JPanel {
                 try {
                     pModel.addProduct(product);
                 } catch (Exception e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                     return;
                 }
                 // Pop-up message
@@ -174,7 +174,8 @@ public class StaffProductPanel extends JPanel {
                 try {
                     pModel.removeProduct(p);
                 } catch (Exception e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
+                    return;
                 }
                 // Pop-up message
                 JOptionPane.showMessageDialog(null, "Product removed");

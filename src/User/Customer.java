@@ -25,12 +25,24 @@ public class Customer extends User {
     }
 
     /**
+     * Get number of all borrowing product
+     * @return
+     */
+    public int getNumBorrowing() {
+        int num = 0;
+        for (String key : borrowingList.keySet()) {
+            num += borrowingList.get(key);
+        }
+        return num;
+    }
+
+    /**
      * get number of borrowing of given product
      * 
      * @param product
      * @return number of borrowing
      */
-    public int getBorrowingNumber(Product product) {
+    public int getNumBorrowing(Product product) {
         String name = product.getName();
         if (borrowingList.containsKey(name)) {
             return borrowingList.get(name);
@@ -38,8 +50,8 @@ public class Customer extends User {
             return 0;
         }
     }
-
-    public int getBorrowingNumber(String productName) {
+    // using name instead of product object
+    public int getNumBorrowing(String productName) {
         if (borrowingList.containsKey(productName)) {
             return borrowingList.get(productName);
         } else {
@@ -111,7 +123,7 @@ public class Customer extends User {
         int existNum;
         String name = product.getName();
 
-        if (returnNum > getBorrowingNumber(product)) {
+        if (returnNum > getNumBorrowing(product)) {
             throw new Exception("Returning much more than borrowing");
         }
 

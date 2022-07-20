@@ -114,6 +114,9 @@ public class ProductModel {
     public void removeProduct(Product p) throws Exception {
         int index = getIndex(p);
         if (pList.get(index).equals(p)) {
+            if (p.getNumLending() > 0) {
+                throw new Exception("Cannot remove product being lent");
+            }
             pList.remove(index);
             System.out.println("Product:" + p.getName() + "removed");
         } else {
