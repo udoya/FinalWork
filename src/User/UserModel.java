@@ -92,36 +92,30 @@ public class UserModel {
      * Add a user to the system.
      *
      * @param user The user to add.
-     * @return true if the user is added, false if the ID is already in
-     *         the system.
      */
-    public boolean addUser(User user) {
+    public void addUser(User user) throws Exception {
         if (checkID(user.getID()) >= 0) {
-            return false;
+            throw new Exception("ID already exists");
         }
         userList.add(user);
-        return true;
     }
 
     /**
      * Remove a user from the system.
      * 
      * @param user The user to remove.
-     * @return true if the user is removed, false if the user is not in the
-     *         system.
      */
-    public boolean removeUser(User user) {
+    public void removeUser(User user) throws Exception {
         int index = checkID(user.getID());
-        if (index >= 0) {
-            userList.remove(index);
-            System.out.println("User " + user.getName() + " is removed.");
-            return true;
+        if (index < 0) {
+            throw new Exception("ID not found");
         }
-        return false;
+        userList.remove(index);
+        System.out.println("User " + user.getName() + " is removed.");
     }
 
     /**
-     * Update a user by replacing
+     * Update a user
      * 
      * @param user
      */
@@ -130,6 +124,20 @@ public class UserModel {
         if (index >= 0) {
             userList.set(index, user);
             System.out.println("User " + user.getName() + " is updated.");
+        }
+    }
+
+    /**
+     * Update a user by replacing
+     * 
+     * @param oldUser
+     * @param newUser
+     */
+    public void updateUser(User oldUser, User newUser) {
+        int index = checkID(oldUser.getID());
+        if (index >= 0) {
+            userList.set(index, newUser);
+            System.out.println("User " + newUser.getName() + " is updated.");
         }
     }
 

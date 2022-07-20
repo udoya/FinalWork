@@ -67,10 +67,12 @@ public class Customer extends User {
      * 
      * @return List of "ProductName: quantity"
      */
-    public String getBorrowingListString() {
-        String result = "";
+    public String[] getBorrowingListString() {
+        String[] result = new String[borrowingList.size()];
+        int i = 0;
         for (String key : borrowingList.keySet()) {
-            result += key + " " + borrowingList.get(key) + "\n";
+            result[i] = key + " " + borrowingList.get(key);
+            i++;
         }
         return result;
     }

@@ -5,12 +5,12 @@ import User.*;
 import GUI.*;
 
 import javax.swing.*;
-import javax.swing.text.FlowView;
+// import javax.swing.text.FlowView;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.GenericDeclaration;
-import java.util.*;
+// import java.lang.reflect.GenericDeclaration;
+// import java.util.*;
 
 public class StaffProductPanel extends JPanel {
     InfoPanel infoPanel;
@@ -19,9 +19,9 @@ public class StaffProductPanel extends JPanel {
     JPanel leftPanel = new JPanel();
     JPanel rightPanel = new JPanel();
 
-    JLabel pLabel;
-    JComboBox<String> pCombo;
-    DefaultComboBoxModel<String> pListModel;
+    JLabel label;
+    JComboBox<String> combo;
+    DefaultComboBoxModel<String> listModel;
 
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
@@ -33,11 +33,11 @@ public class StaffProductPanel extends JPanel {
 
     // make list to display all product list
     public void setProductList() {
-        pListModel = new DefaultComboBoxModel<>();
-        pListModel.addElement("New Product");
+        listModel = new DefaultComboBoxModel<>();
+        listModel.addElement("New Product");
         for (int i = 0; i < pModel.getProductListSize(); i++) {
-            Product p = pModel.getProduct(i);
-            pListModel.addElement(p.getProductString(i));
+            Product p = pModel.getProductList().get(i);
+            listModel.addElement(p.getProductString(i));
         }
     }
 
@@ -49,7 +49,7 @@ public class StaffProductPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             rightPanel.removeAll();
 
-            int index = pCombo.getSelectedIndex();
+            int index = combo.getSelectedIndex();
             // When adding new product
             // Select top or nothing
             if (index == 0 || index == -1) {
@@ -79,23 +79,23 @@ public class StaffProductPanel extends JPanel {
 
             setProductList();
 
-            pLabel = new JLabel("Product");
-            pCombo = new JComboBox<String>(pListModel);
-            pCombo.addActionListener(this);
+            label = new JLabel("Product");
+            combo = new JComboBox<String>(listModel);
+            combo.addActionListener(this);
             // font
-            pLabel.setFont(new Font("Segoe UI", Font.BOLD, 74));
-            pLabel.setHorizontalAlignment(JLabel.CENTER);
-            pCombo.setFont(new Font("Segoe UI", Font.BOLD, 30));
+            label.setFont(new Font("Segoe UI", Font.BOLD, 74));
+            label.setHorizontalAlignment(JLabel.CENTER);
+            combo.setFont(new Font("Segoe UI", Font.BOLD, 30));
 
             // resize Label and ComboBox
-            pLabel.setPreferredSize(new Dimension(600, 100));
-            pCombo.setPreferredSize(new Dimension(400, 80));
+            label.setPreferredSize(new Dimension(600, 100));
+            combo.setPreferredSize(new Dimension(400, 80));
 
-            // this.add(pLabel);
-            // this.add(pCombo);
+            // this.add(label);
+            // this.add(combo);
 
-            this.add(pLabel);
-            this.add(pCombo);
+            this.add(label);
+            this.add(combo);
 
             this.setPreferredSize(new Dimension(800, 600));
         }
@@ -158,7 +158,7 @@ public class StaffProductPanel extends JPanel {
 
                 // TODO: add product to comboBox and pModel
                 setProductList();
-                pCombo.setModel(pListModel);
+                combo.setModel(listModel);
                 leftPanel.revalidate();
                 leftPanel.repaint();
             }
@@ -168,7 +168,7 @@ public class StaffProductPanel extends JPanel {
         class RemoveButtonAction implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = pCombo.getSelectedIndex();
+                int index = combo.getSelectedIndex();
                 Product p = pModel.getProduct(index - 1);
                 // remove product from product list
                 try {
@@ -180,28 +180,32 @@ public class StaffProductPanel extends JPanel {
                 JOptionPane.showMessageDialog(null, "Product removed");
 
                 setProductList();
-                pCombo.setModel(pListModel);
+                combo.setModel(listModel);
                 leftPanel.revalidate();
                 leftPanel.repaint();
 
                 // remove ComboBox item
-                // pCombo.removeItemAt(index);
+                // combo.removeItemAt(index);
             }
         }
 
         class EditButtonAction implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = pCombo.getSelectedIndex();
+                int index = combo.getSelectedIndex();
                 Product p = pModel.getProduct(index - 1); // index:0 is "New Product"
-
+            
                 // get new name
                 String name = nameField.getText();
                 // if name is empty, use old name
                 if (name.equals("")) {
                     name = p.getName();
                 }
-                p.setName(name);
+                // care about duplicate name
+                if (pModel.getProduct(name) != null) {
+                    JOptionPane.showMessageDialog(null, "Name is duplicate");
+                    return;
+                }
 
                 // get new total
                 int total;
@@ -212,15 +216,17 @@ public class StaffProductPanel extends JPanel {
                     total = Integer.parseInt(totalField.getText());
                 }
                 // care about smaller total than numLending
-                try {
-                    p.setNumTotal(total);
-                } catch (Exception e1) {
+                if (total < p.getNumLending()) {
                     JOptionPane.showMessageDialog(null, "Total cannot be less than number of lending");
                     return;
                 }
 
+                // update product
+                pModel.updateProduct(p, new Product(name, total));
+
+                // refresh comboBox
                 setProductList();
-                pCombo.setModel(pListModel);
+                combo.setModel(listModel);
                 rightPanel.revalidate();
                 rightPanel.repaint();
                 leftPanel.revalidate();
@@ -228,7 +234,6 @@ public class StaffProductPanel extends JPanel {
             }
         }
 
-        // TODO: BUTTON
         // When adding new product
         InfoPanel() {
             this.setLayout(new FlowLayout());

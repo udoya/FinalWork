@@ -126,13 +126,24 @@ public class ProductModel {
     }
 
     /**
-     * Update product by replacing
+     * Update product
      * 
      * @param p
      */
     public void updateProduct(Product p) {
         int index = getIndex(p);
-        pList.set(index, p);
+        if (index >= 0) {
+            pList.set(index, p);
+            System.out.println("Product:" + p.getName() + "is updated");
+        }
+    }
+
+    public void updateProduct(Product oldP, Product newP) {
+        int index = getIndex(oldP);
+        if (index >= 0) {
+            pList.set(index, newP);
+            System.out.println("Product:" + newP.getName() + "is updated");
+        }
     }
 
 }
