@@ -77,6 +77,8 @@ public class Customer extends User {
         return result;
     }
 
+
+    /* Setter */
     /**
      * Add a product to the borrowing list
      * 

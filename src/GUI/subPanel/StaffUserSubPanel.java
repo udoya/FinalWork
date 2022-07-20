@@ -142,7 +142,7 @@ public class StaffUserSubPanel extends JPanel {
                 }
                 // care about duplicate ID
                 if (uModel.getUser(ID) != null) {
-                    JOptionPane.showMessageDialog(null, "ID is duplicate");
+                    JOptionPane.showMessageDialog(null, "Same ID already exists");
                     return;
                 }
 
@@ -212,14 +212,14 @@ public class StaffUserSubPanel extends JPanel {
 
                 // get new ID
                 String ID = idField.getText();
+                String oldID = u.getID();
+                if (uModel.getUser(ID) != null && !ID.equals(oldID)) {
+                    JOptionPane.showMessageDialog(null, "Same ID already exists");
+                    return;
+                }
                 // if ID is empty, do not change
                 if (ID.equals("")) {
                     ID = u.getID();
-                }
-                // care about duplicate ID
-                if (uModel.getUser(ID) != null) {
-                    JOptionPane.showMessageDialog(null, "ID is duplicate");
-                    return;
                 }
 
                 // get new password
@@ -311,7 +311,7 @@ public class StaffUserSubPanel extends JPanel {
             this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
             JLabel nameLabel = new JLabel("Name");
-            JLabel idLabel = new JLabel("Available");
+            JLabel idLabel = new JLabel("ID");
             JLabel pwdLabel = new JLabel("Password");
 
             nameField = new JTextField(u.getName());

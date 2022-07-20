@@ -7,6 +7,8 @@ import GUI.*;
 public class CustomerController {
     /**
      * Borrow a product
+     * * After this, you must update product and customer
+     * 
      * @param product
      * @param customer
      * @param bNum
@@ -33,6 +35,8 @@ public class CustomerController {
 
     /**
      * Return a product
+     * * After this, you must update product and customer
+     * 
      * @param product
      * @param customer
      * @param rNum

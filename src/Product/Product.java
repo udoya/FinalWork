@@ -97,11 +97,11 @@ public class Product {
     }
 
     /* Setter */
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public void setNumTotal(int newTotal) throws IllegalArgumentException {
+    void setNumTotal(int newTotal) throws IllegalArgumentException {
         int dif = newTotal - this.numTotal;
         int newAva = this.numAvailable + dif;
         if (newAva < 0) {
@@ -115,11 +115,11 @@ public class Product {
     // this.numAvailable = numAvailable;
     // }
 
-    public void setLendingList(TreeMap<String, Integer> lendingList) {
+    void setLendingList(TreeMap<String, Integer> lendingList) {
         this.lendingList = lendingList;
     }
 
-    public void setImageFile(File imageFile) {
+    void setImageFile(File imageFile) {
         this.imageFile = imageFile;
     }
 

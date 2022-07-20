@@ -86,8 +86,7 @@ public class UserModel {
         return found;
     }
 
-    /* END OF Getter */
-
+    /* Setter */
     /**
      * Add a user to the system.
      *
@@ -114,8 +113,24 @@ public class UserModel {
         System.out.println("User " + user.getName() + " is removed.");
     }
 
+    /** 
+     * Simply update user
+     * Use only when you didn't change ID
+     * 
+     * @param user
+     */
+    public void updateUser(User user) {
+        int index = checkID(user.getID());
+        if (index >= 0) {
+            userList.set(index, user);
+            System.out.println("User " + user.getName() + " is updated.");
+        }
+    }
+
     /**
      * Update a user by replacing
+     * Use when you want to change ID
+     * *This method is necessary because you can't find a user if the ID is changed.
      * 
      * @param user the user to update
      * @param name new one

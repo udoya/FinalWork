@@ -126,7 +126,22 @@ public class ProductModel {
     }
 
     /**
+     * Simply update product
+     * Use only when you don't change ID
+     * 
+     * @param p
+     */
+    public void updateProduct(Product p) {
+        int index = getIndex(p);
+        if (index >= 0) {
+            pList.set(index, p);
+            System.out.println("Product:" + p.getName() + "is updated");
+        }
+    }
+
+    /**
      * Update product
+     * *This method is necessary because you can't find a product by name if it's changed
      * 
      * @param p the product to be updated
      * @param name new name

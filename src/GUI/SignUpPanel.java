@@ -47,7 +47,7 @@ public class SignUpPanel extends JPanel {
                 }
                 // care about duplicate ID
                 if (uModel.getUser(ID) != null) {
-                    JOptionPane.showMessageDialog(null, "ID is duplicate");
+                    JOptionPane.showMessageDialog(null, "Sorry, same ID is already in the system");
                     return;
                 }
 

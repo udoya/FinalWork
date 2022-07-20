@@ -117,12 +117,13 @@ public class ProductListPanel extends JPanel {
                     break;
             }
             pModel.updateProduct(p);
-            System.out.println(c.getBorrowingItemName());
             uModel.updateUser(c);
+
             // System.out.println("Av:" + p.getNumAvailable());
             // System.out.println("To:" + p.getNumTotal());
             // System.out.println(pModel.getProduct(productIdList.get(index)).getNumAvailable());
             // System.out.println(pModel.getProduct(productIdList.get(index)).getNumTotal());
+
             setProductList();
             CustomerPanel.borrowingListPanel.setBorrowingList();
 
