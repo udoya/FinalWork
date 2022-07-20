@@ -116,6 +116,7 @@ public class StaffUserPanel extends JPanel {
         JTextField nameField;
         JTextField idField;
         JTextField pwdField;
+        JCheckBox staffCheckBox;
 
         /**
          * Button
@@ -139,6 +140,11 @@ public class StaffUserPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "ID is empty");
                     return;
                 }
+                // care about duplicate ID
+                if (uModel.getUser(ID) != null) {
+                    JOptionPane.showMessageDialog(null, "ID is duplicate");
+                    return;
+                }
 
                 // Get password
                 String pwd = pwdField.getText();
@@ -148,15 +154,13 @@ public class StaffUserPanel extends JPanel {
                     return;
                 }
 
-                // care about duplicate ID
-                if (uModel.getUser(ID) != null) {
-                    JOptionPane.showMessageDialog(null, "ID is duplicate");
-                    return;
-                }
-
-                // Add new user
+                // Add new Staff / Customer
                 try {
-                    uModel.addUser(new User(name, ID, pwd));
+                    if (staffCheckBox.isSelected()) {
+                        uModel.addUser(new Staff(name, ID, pwd));
+                    } else {
+                        uModel.addUser(new Customer(name, ID, pwd));
+                    }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -261,7 +265,7 @@ public class StaffUserPanel extends JPanel {
             pwdField = new JTextField();
             pwdField.setColumns(10);
 
-
+            staffCheckBox = new JCheckBox("Staff");
             JButton addButton = new JButton("Add");
             JPanel namePanel = new JPanel();
             JPanel idPanel = new JPanel();
@@ -290,6 +294,7 @@ public class StaffUserPanel extends JPanel {
             idPanel.add(idField);
             pwdPanel.add(pwdLabel);
             pwdPanel.add(pwdField);
+            buttonPanel.add(staffCheck);
             buttonPanel.add(addButton);
             add(namePanel);
             add(idPanel);
