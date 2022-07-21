@@ -41,7 +41,7 @@ public class StaffUserSubPanel extends JPanel {
             } else {
                 role = "Customer";
             }
-            listModel.addElement(u.getName() + "@" + role);
+            listModel.addElement(u.getID() + "@" + role);
         }
     }
 
