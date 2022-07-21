@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class HeaderPanel extends JPanel {
+public class CustomerHeaderPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     JButton mainBtn;
     JButton infoBtn;
@@ -40,7 +40,7 @@ public class HeaderPanel extends JPanel {
         }
     }
 
-    public HeaderPanel(int BtnIndex) {
+    public CustomerHeaderPanel(int BtnIndex) {
 
         // header 1*6
         this.setLayout(new GridLayout(0, 4, 0, 0));

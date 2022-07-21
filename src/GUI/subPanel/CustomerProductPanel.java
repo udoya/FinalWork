@@ -2,7 +2,7 @@ package GUI.subPanel;
 
 import GUI.*;
 import GUI.Controller.*;
-import GUI.subPanel.HeaderPanel;
+import GUI.subPanel.CustomerHeaderPanel;
 import Product.*;
 import User.*;
 

@@ -22,7 +22,7 @@ public class CustomerPanel extends JPanel {
     JButton signInBtn;
     JButton signUpBtn;
     JButton quitButton;
-    HeaderPanel headerPanel;
+    CustomerHeaderPanel headerPanel;
 
     public static CustomerProductPanel productListPanel;
     public static CustomerBorrowingPanel borrowingListPanel;
@@ -56,7 +56,7 @@ public class CustomerPanel extends JPanel {
 
     public void prepareComponents() {
         this.setLayout(new BorderLayout());
-        headerPanel = new HeaderPanel(0);
+        headerPanel = new CustomerHeaderPanel(0);
         // resize
         headerPanel.setPreferredSize(new Dimension(Main.WIDTH, Main.HEIGHT / 12));
 

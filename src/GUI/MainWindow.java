@@ -2,7 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
-import GUI.subPanel.HeaderPanel;
+import GUI.subPanel.CustomerHeaderPanel;
 
 import java.awt.CardLayout;
 import java.awt.*;

@@ -25,7 +25,7 @@ public class StaffProductSubPanel extends JPanel {
 
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
-    HeaderPanel headerPanel = new HeaderPanel(0);
+    CustomerHeaderPanel headerPanel = new CustomerHeaderPanel(0);
 
     public void changeUserLabelInHeaderPanel(String uID) {
         headerPanel.changeUserLabel(uID);
