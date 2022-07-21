@@ -2,7 +2,6 @@
 package GUI;
 
 import GUI.subPanel.FooterPanel;
-import GUI.*;
 import User.*;
 
 import java.awt.Color;

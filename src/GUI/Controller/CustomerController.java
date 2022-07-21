@@ -12,7 +12,8 @@ public class CustomerController {
      * @param product
      * @param customer
      * @param bNum
-     * @return -1: Invalid bNum, 0: Successful borrow, 1: Borrow much more than available
+     * @return -1: Invalid bNum, 0: Successful borrow, 1: Borrow much more than
+     *         available
      */
     public int borrowProduct(Product p, Customer c, int num) {
         if (num <= 0) {
@@ -42,7 +43,8 @@ public class CustomerController {
      * @param product
      * @param customer
      * @param rNum
-     * @return -1: Invalid rNum, 0: Successful return, 1: Return much more than borrowed
+     * @return -1: Invalid rNum, 0: Successful return, 1: Return much more than
+     *         borrowed
      */
     public int returnProduct(Product p, Customer c, int num) {
         if (num <= 0) {

@@ -2,11 +2,9 @@ package GUI.subPanel;
 
 import GUI.*;
 import GUI.Controller.*;
-import GUI.subPanel.CustomerHeaderPanel;
 import Product.*;
 import User.*;
 
-import GUI.subPanel.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

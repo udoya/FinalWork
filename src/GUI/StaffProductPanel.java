@@ -5,7 +5,6 @@ import Product.*;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 public class StaffProductPanel extends JPanel {

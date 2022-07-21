@@ -1,14 +1,11 @@
 package GUI;
 
 import GUI.Controller.*;
-import Product.*;
-import User.*;
 
 import GUI.subPanel.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 /**
  * Panel1: Show My Profile
