@@ -22,6 +22,8 @@ public class CustomerController {
             try {
                 c.borrowItem(p, num);
                 p.borrowThis(c, num);
+                Main.pModel.updateProduct(p);
+                Main.uModel.updateUser(c);
             } catch (Exception e) {
                 return 2;
             }
@@ -50,6 +52,8 @@ public class CustomerController {
             try {
                 p.returnThis(c, num);
                 c.returnItem(p, num);
+                Main.pModel.updateProduct(p);
+                Main.uModel.updateUser(c);
             } catch (Exception e) {
                 return 2;
             }
