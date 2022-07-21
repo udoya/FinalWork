@@ -16,7 +16,7 @@ public class MainWindow extends JFrame {
     LoginPanel lgPanel;
     SignUpPanel signUpPanel;
     CustomerPanel customerPanel;
-    StaffPanel staffPanel;
+    StaffProductPanel staffPanel;
     StaffUserPanel staffUserPanel;
 
     MainWindow() {
@@ -46,7 +46,7 @@ public class MainWindow extends JFrame {
         this.add(customerPanel, "Customer");
         this.pack();
 
-        staffPanel = new StaffPanel();
+        staffPanel = new StaffProductPanel();
         this.add(staffPanel, "Staff");
         this.pack();
 
@@ -86,7 +86,7 @@ public class MainWindow extends JFrame {
     public void resetStaffPanel() {
         resetLgAndSignUpPanel();
         this.remove(staffPanel);
-        staffPanel = new StaffPanel();
+        staffPanel = new StaffProductPanel();
         staffPanel.prepareComponents();
         this.add(staffPanel, "Staff");
 

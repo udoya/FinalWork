@@ -110,6 +110,8 @@ public class CustomerProductPanel extends JPanel {
                     break;
                 case 2:
                     JOptionPane.showMessageDialog(null, "Sorry, something happened.");
+                    System.exit(1);
+                    Main.mainWindow.dispose();
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null,

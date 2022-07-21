@@ -70,6 +70,8 @@ public class CustomerBorrowingPanel extends JPanel {
                     break;
                 case 2: // System Error
                     JOptionPane.showMessageDialog(null, "Sorry, something happened.");
+                    System.exit(1);
+                    Main.mainWindow.dispose();
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "You returned " + rNum + " " + p.getName() + " successfully.");

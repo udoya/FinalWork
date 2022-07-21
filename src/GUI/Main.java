@@ -45,7 +45,7 @@ public class Main {
         mainWindow = new MainWindow();
         mainWindow.preparePanels();
         mainWindow.prepareComponents();
-        mainWindow.setFrontScreenAndFocus(ScreenMode.LOGIN);
+        mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF);
 
         mainWindow.setVisible(true);
     }

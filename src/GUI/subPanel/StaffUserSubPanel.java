@@ -97,10 +97,7 @@ public class StaffUserSubPanel extends JPanel {
 
             // resize Label and ComboBox
             label.setPreferredSize(new Dimension(600, 100));
-            combo.setPreferredSize(new Dimension(400, 80));
-
-            // this.add(label);
-            // this.add(combo);
+            combo.setPreferredSize(new Dimension(600, 80));
 
             this.add(label);
             this.add(combo);
@@ -282,17 +279,34 @@ public class StaffUserSubPanel extends JPanel {
             addButton.addActionListener(new AddButtonAction());
 
             // resize components
-            nameField.setColumns(10);
+            nameField.setColumns(36);
+            nameField.setPreferredSize(new Dimension(550, 40));
             pwdField.setColumns(10);
-            idField.setPreferredSize(new Dimension(100, 100));
-            addButton.setPreferredSize(new Dimension(100, 30));
+            pwdField.setPreferredSize(new Dimension(300, 40));
 
+            idField.setPreferredSize(new Dimension(300, 40));
+            idLabel.setPreferredSize(new Dimension(70, 100));
+            idLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+            // password label margin
+            pwdLabel.setPreferredSize(new Dimension(150, 100));
+            pwdLabel.setHorizontalAlignment(SwingConstants.RIGHT);
             // fonts
             nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
             idLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
             pwdLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
             nameField.setFont(new Font("Segoe UI", Font.BOLD, 20));
             idField.setFont(new Font("Segoe UI", Font.BOLD, 20));
+
+            buttonPanel.setLayout(new FlowLayout());
+            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 2, Main.HEIGHT / 8));
+            staffCheckBox.setPreferredSize(new Dimension(100, 40));
+            staffCheckBox.setFont(new Font("Segoe UI", Font.BOLD, 20));
+            addButton.setPreferredSize(new Dimension(100, 40));
+            addButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+
+            // btn color
+            addButton.setBackground(Color.GREEN);
 
             namePanel.add(nameLabel);
             namePanel.add(nameField);
@@ -332,13 +346,20 @@ public class StaffUserSubPanel extends JPanel {
             // resize components
             nameField.setColumns(36);
             nameField.setPreferredSize(new Dimension(550, 40));
-            pwdField.setColumns(6);
+            pwdField.setColumns(10);
             pwdField.setPreferredSize(new Dimension(300, 40));
 
-            idField.setPreferredSize(new Dimension(300, 100));
+            idField.setPreferredSize(new Dimension(300, 40));
             idLabel.setPreferredSize(new Dimension(70, 100));
-            removeButton.setPreferredSize(new Dimension(150, 30));
-            editButton.setPreferredSize(new Dimension(70, 30));
+            idLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            removeButton.setPreferredSize(new Dimension(250, 50));
+            editButton.setPreferredSize(new Dimension(200, 50));
+            removeButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+            editButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+
+            // password label margin
+            pwdLabel.setPreferredSize(new Dimension(150, 100));
+            pwdLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
             // fonts
             nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -348,11 +369,15 @@ public class StaffUserSubPanel extends JPanel {
             idField.setFont(new Font("Segoe UI", Font.BOLD, 20));
             pwdField.setFont(new Font("Segoe UI", Font.BOLD, 20));
 
+            // btn color
+            removeButton.setBackground(Color.RED);
+            editButton.setBackground(Color.GREEN);
+
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout());
             buttonPanel.add(removeButton);
             buttonPanel.add(editButton);
-            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 6, Main.HEIGHT / 7));
+            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 2, Main.HEIGHT / 7));
 
             this.add(nameLabel);
             this.add(nameField);
@@ -388,7 +413,8 @@ public class StaffUserSubPanel extends JPanel {
             scrollPane = new JScrollPane(list);
             scrollPane.createVerticalScrollBar();
             scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            scrollPane.setFont(new Font("Segoe UI", Font.BOLD, 25));
+            // change fonts
+            list.setFont(new Font("Segoe UI", Font.BOLD, 24));
             this.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
             this.setLayout(new BorderLayout());
             add(scrollPane, BorderLayout.CENTER);

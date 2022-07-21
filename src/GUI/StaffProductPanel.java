@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class StaffPanel extends JPanel {
+public class StaffProductPanel extends JPanel {
 
     StaffHeaderPanel headerPanel;
     private static final long serialVersionUID = 1L;
@@ -60,7 +60,7 @@ public class StaffPanel extends JPanel {
         headerPanel.setPreferredSize(new Dimension(Main.WIDTH, Main.HEIGHT / 12));
         FooterPanel footerPanel = new FooterPanel();
 
-        StaffProductPanel productPanel = new StaffProductPanel();
+        StaffProductSubPanel productPanel = new StaffProductSubPanel();
 
         this.add(headerPanel, BorderLayout.NORTH);
         this.add(productPanel, BorderLayout.CENTER);

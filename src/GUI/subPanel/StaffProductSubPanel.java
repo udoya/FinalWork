@@ -12,7 +12,7 @@ import java.awt.event.*;
 // import java.lang.reflect.GenericDeclaration;
 // import java.util.*;
 
-public class StaffProductPanel extends JPanel {
+public class StaffProductSubPanel extends JPanel {
     InfoPanel infoPanel;
     ComboPanel comboPanel;
     ListPanel listPanel;
@@ -86,7 +86,7 @@ public class StaffProductPanel extends JPanel {
 
             // resize Label and ComboBox
             label.setPreferredSize(new Dimension(600, 100));
-            combo.setPreferredSize(new Dimension(400, 80));
+            combo.setPreferredSize(new Dimension(600, 80));
 
             // this.add(label);
             // this.add(combo);
@@ -192,7 +192,6 @@ public class StaffProductPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int index = combo.getSelectedIndex();
                 Product p = pModel.getProduct(index - 1); // index:0 is "New Product"
-
                 // get new name
                 String name = nameField.getText();
                 String oldName = p.getName();
@@ -265,10 +264,15 @@ public class StaffProductPanel extends JPanel {
             addButton.addActionListener(new AddButtonAction());
 
             // resize components
-            nameField.setColumns(10);
-            totalField.setColumns(10);
+            nameField.setColumns(36);
+            nameField.setPreferredSize(new Dimension(400, 40));
+            totalField.setColumns(6);
+            totalField.setPreferredSize(new Dimension(300, 40));
             availableField.setPreferredSize(new Dimension(100, 100));
-            addButton.setPreferredSize(new Dimension(100, 30));
+            addButton.setPreferredSize(new Dimension(250, 60));
+
+            // button color
+            addButton.setBackground(Color.GREEN);
 
             // fonts
             nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -276,6 +280,8 @@ public class StaffProductPanel extends JPanel {
             totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
             nameField.setFont(new Font("Segoe UI", Font.BOLD, 20));
             availableField.setFont(new Font("Segoe UI", Font.BOLD, 20));
+            totalField.setFont(new Font("Segoe UI", Font.BOLD, 20));
+            addButton.setFont(new Font("Segoe UI", Font.BOLD, 22));
 
             namePanel.add(nameLabel);
             namePanel.add(nameField);
@@ -318,8 +324,8 @@ public class StaffProductPanel extends JPanel {
             totalField.setPreferredSize(new Dimension(300, 40));
 
             availableField.setPreferredSize(new Dimension(100, 100));
-            removeButton.setPreferredSize(new Dimension(70, 30));
-            editButton.setPreferredSize(new Dimension(70, 30));
+            removeButton.setPreferredSize(new Dimension(200, 40));
+            editButton.setPreferredSize(new Dimension(150, 40));
 
             // fonts
             nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -328,12 +334,18 @@ public class StaffProductPanel extends JPanel {
             nameField.setFont(new Font("Segoe UI", Font.BOLD, 20));
             availableField.setFont(new Font("Segoe UI", Font.BOLD, 20));
             totalField.setFont(new Font("Segoe UI", Font.BOLD, 20));
+            removeButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+            editButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+
+            // button color
+            removeButton.setBackground(Color.RED);
+            editButton.setBackground(Color.GREEN);
 
             JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new GridLayout(1, 2));
+            buttonPanel.setLayout(new FlowLayout());
             buttonPanel.add(removeButton);
             buttonPanel.add(editButton);
-            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 8));
+            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 2, Main.HEIGHT / 8));
 
             this.add(nameLabel);
             this.add(nameField);
@@ -341,12 +353,6 @@ public class StaffProductPanel extends JPanel {
             this.add(availableField);
             this.add(totalLabel);
             this.add(totalField);
-
-            // this.add(removeButton);
-            // this.add(editButton);
-            // this.add(namePanel);
-            // this.add(availablePanel);
-            // this.add(totalPanel);
             this.add(buttonPanel);
 
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -370,7 +376,7 @@ public class StaffProductPanel extends JPanel {
             scrollPane = new JScrollPane(list);
             scrollPane.createVerticalScrollBar();
             scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            scrollPane.setFont(new Font("Segoe UI", Font.BOLD, 25));
+            list.setFont(new Font("Segoe UI", Font.BOLD, 24));
             this.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
             this.setLayout(new BorderLayout());
             add(scrollPane, BorderLayout.CENTER);
@@ -383,7 +389,7 @@ public class StaffProductPanel extends JPanel {
         add(comboPanel);
     }
 
-    public StaffProductPanel() {
+    public StaffProductSubPanel() {
         comboPanel = new ComboPanel();
         infoPanel = new InfoPanel();
         listPanel = new ListPanel();
