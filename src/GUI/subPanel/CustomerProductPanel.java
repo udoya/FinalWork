@@ -116,8 +116,6 @@ public class CustomerProductPanel extends JPanel {
                             "You borrowed " + bNum + " " + p.getName() + " successfully.");
                     break;
             }
-            pModel.updateProduct(p);
-            uModel.updateUser(c);
 
             // System.out.println("Av:" + p.getNumAvailable());
             // System.out.println("To:" + p.getNumTotal());
