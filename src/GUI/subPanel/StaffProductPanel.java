@@ -333,7 +333,7 @@ public class StaffProductPanel extends JPanel {
             buttonPanel.setLayout(new GridLayout(1, 2));
             buttonPanel.add(removeButton);
             buttonPanel.add(editButton);
-            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
+            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 8));
 
             this.add(nameLabel);
             this.add(nameField);
@@ -360,6 +360,8 @@ public class StaffProductPanel extends JPanel {
         // When adding new product
         ListPanel() {
             // TODO : nothing here
+            this.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
+            this.setLayout(new BorderLayout());
         }
 
         // When looking product
@@ -368,7 +370,10 @@ public class StaffProductPanel extends JPanel {
             scrollPane = new JScrollPane(list);
             scrollPane.createVerticalScrollBar();
             scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            add(scrollPane);
+            scrollPane.setFont(new Font("Segoe UI", Font.BOLD, 25));
+            this.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
+            this.setLayout(new BorderLayout());
+            add(scrollPane, BorderLayout.CENTER);
         }
 
     }

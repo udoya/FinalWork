@@ -379,6 +379,7 @@ public class StaffUserSubPanel extends JPanel {
         // When adding new User
         ListPanel() {
             // TODO : nothing here
+            this.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
         }
 
         // When looking Customer
@@ -387,7 +388,10 @@ public class StaffUserSubPanel extends JPanel {
             scrollPane = new JScrollPane(list);
             scrollPane.createVerticalScrollBar();
             scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            add(scrollPane);
+            scrollPane.setFont(new Font("Segoe UI", Font.BOLD, 25));
+            this.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
+            this.setLayout(new BorderLayout());
+            add(scrollPane, BorderLayout.CENTER);
         }
     }
 
