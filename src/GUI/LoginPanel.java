@@ -36,10 +36,6 @@ public class LoginPanel extends JPanel {
                     String name;
                     switch (login) {
                         case 0:
-                            JOptionPane.showMessageDialog(null, "Invalid ID or Password", "Error",
-                                    JOptionPane.ERROR_MESSAGE);
-                            break;
-                        case 1:
                             name = LC.getName(ID);
                             JOptionPane.showMessageDialog(null, "Login Success\nStaff: " + name, "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
@@ -49,7 +45,7 @@ public class LoginPanel extends JPanel {
                             Main.mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF);
                             System.out.println("Login Success: STAFF");
                             break;
-                        case 2:
+                        case 1:
                             name = LC.getName(ID);
                             JOptionPane.showMessageDialog(null, "Login Success\nWelcome " + name, "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
@@ -57,12 +53,14 @@ public class LoginPanel extends JPanel {
                             Main.mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
                             System.out.println("Login Success: CUSTOMER");
                             break;
-                    }
-                    // Too many wrong attempts
-                    if (LC.getLoginCount() > 5) {
-                        JOptionPane.showMessageDialog(null, "Too many login attempts.\nPlease try again later.",
-                                "Error", JOptionPane.ERROR_MESSAGE);
+                        case 2:
+                        JOptionPane.showMessageDialog(null, "Too many wrong attempts.\nPlease try again later.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
                         System.exit(0);
+                        case 3:
+                        JOptionPane.showMessageDialog(null, "Invalid ID or Password", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
                     }
                 }
 

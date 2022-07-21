@@ -21,19 +21,22 @@ public class LoginController {
         System.out.println("Try Login: " + ID);
         loginCount++;
         User user = uModel.getUser(ID);
-        if (user == null) {
-            return 0;
-        } else if (!user.getPassword().equals(password)) {
-            return 0;
-        } else {
-            loginCount = 0;
-            Main.uID = ID;
-            if (user.isMaster()) {
-                return 1;
-            } else {
-                return 2;
+        // check existance
+        if (user != null) {
+            // check password
+            if (user.getPassword().equals(password)) {
+                if (user instanceof Staff) {
+                    return 0;
+                } else if (user instanceof Customer) {
+                    return 1;
+                }
             }
         }
+        // too many login attempts
+        if (loginCount >= 5) {
+            return 2;
+        }
+        return 3;
     }
 
     /**
@@ -41,12 +44,5 @@ public class LoginController {
      */
     public String getName(String ID) {
         return uModel.getUser(ID).getName();
-    }
-
-    /**
-     * Check how many times the user has tried to login
-     */
-    public int getLoginCount() {
-        return loginCount;
     }
 }
