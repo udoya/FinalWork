@@ -43,18 +43,13 @@ public class HeaderPanel extends JPanel {
     public HeaderPanel(int BtnIndex) {
 
         // header 1*6
-        this.setLayout(new GridLayout(0, 6, 0, 0));
+        this.setLayout(new GridLayout(0, 4, 0, 0));
 
         // init btn
         mainBtn = new JButton("Main");
         infoBtn = new JButton("Info");
         signOutBtn = new JButton("Sign Out");
         signOutBtn.addActionListener(new BtnAction());
-
-        // 3 of the test btn
-        JButton testBtn = new JButton("Test");
-        JButton testBtn2 = new JButton("Test2");
-        JButton testBtn3 = new JButton("Test3");
 
         // show user name and role
         User user = Main.uModel.getUser(Main.uID);
@@ -73,9 +68,6 @@ public class HeaderPanel extends JPanel {
         mainBtn.setFont(new Font("Arial", Font.BOLD, 20));
         infoBtn.setFont(new Font("Arial", Font.BOLD, 20));
         signOutBtn.setFont(new Font("Arial", Font.BOLD, 20));
-        testBtn.setFont(new Font("Arial", Font.BOLD, 20));
-        testBtn2.setFont(new Font("Arial", Font.BOLD, 20));
-        testBtn3.setFont(new Font("Arial", Font.BOLD, 20));
 
         // set btn color depend on BtnIndex
         switch (BtnIndex) {
@@ -94,8 +86,6 @@ public class HeaderPanel extends JPanel {
         }
 
         this.add(mainBtn);
-        this.add(infoBtn);
-        this.add(testBtn);
         this.add(userNameLabel);
         this.add(userRoleLabel);
         this.add(signOutBtn);

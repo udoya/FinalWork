@@ -334,12 +334,13 @@ public class StaffUserSubPanel extends JPanel {
 
             // resize components
             nameField.setColumns(36);
-            nameField.setPreferredSize(new Dimension(400, 40));
+            nameField.setPreferredSize(new Dimension(550, 40));
             pwdField.setColumns(6);
             pwdField.setPreferredSize(new Dimension(300, 40));
 
-            idField.setPreferredSize(new Dimension(100, 100));
-            removeButton.setPreferredSize(new Dimension(70, 30));
+            idField.setPreferredSize(new Dimension(300, 100));
+            idLabel.setPreferredSize(new Dimension(70, 100));
+            removeButton.setPreferredSize(new Dimension(150, 30));
             editButton.setPreferredSize(new Dimension(70, 30));
 
             // fonts
@@ -351,10 +352,10 @@ public class StaffUserSubPanel extends JPanel {
             pwdField.setFont(new Font("Segoe UI", Font.BOLD, 20));
 
             JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new GridLayout(1, 2));
+            buttonPanel.setLayout(new FlowLayout());
             buttonPanel.add(removeButton);
             buttonPanel.add(editButton);
-            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 4, Main.HEIGHT / 4));
+            buttonPanel.setPreferredSize(new Dimension(Main.WIDTH / 6, Main.HEIGHT / 7));
 
             this.add(nameLabel);
             this.add(nameField);

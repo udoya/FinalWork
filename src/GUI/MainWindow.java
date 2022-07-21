@@ -70,6 +70,10 @@ public class MainWindow extends JFrame {
             staffPanel.changeUserLabel(Main.uID);
         }
 
+        if (s != ScreenMode.LOGIN) {
+            // all panel should be refreshed.
+        }
+
         this.screenMode = s;
         // change screen size
         if (this.screenMode == ScreenMode.LOGIN || this.screenMode == ScreenMode.SIGNUP) {
