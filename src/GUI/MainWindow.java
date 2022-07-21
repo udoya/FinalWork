@@ -1,9 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-
-import GUI.subPanel.CustomerHeaderPanel;
-
 import java.awt.CardLayout;
 import java.awt.*;
 
@@ -118,16 +115,12 @@ public class MainWindow extends JFrame {
         this.setLocationRelativeTo(null);
 
         switch (this.screenMode) {
-            // TODO we should refresh the all panels when user Sign In or Sign Out
             // for example, createComponent when user Sign In, and removeComponent when user
             // Sign Out
 
             case LOGIN:
                 layout.show(this.getContentPane(), "Sign In");
                 lgPanel.requestFocus();
-                break;
-            case HOME:
-                // TODO add home screen
                 break;
             case SIGNUP:
                 layout.show(this.getContentPane(), "Sign Up");

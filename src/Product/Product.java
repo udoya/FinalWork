@@ -2,7 +2,6 @@ package Product;
 
 import java.util.TreeMap;
 import java.io.File;
-import java.io.IOException;
 
 import User.*;
 
