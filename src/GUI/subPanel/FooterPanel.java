@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class FooterPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    JLabel footerLabel = new JLabel("Copyright@2020");
+    JLabel footerLabel = new JLabel("Copyright: Y/N@2022");
     JLabel footerLabel2 = new JLabel("All rights reserved.");
 
     JPanel sub1Footer = new JPanel();
