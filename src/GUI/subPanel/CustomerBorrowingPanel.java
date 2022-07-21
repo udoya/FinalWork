@@ -76,8 +76,7 @@ public class CustomerBorrowingPanel extends JPanel {
                     break;
 
             }
-            pModel.updateProduct(p);
-            uModel.updateUser(c);
+
             // setBorrowingList();
 
             forCustomerPanel();
