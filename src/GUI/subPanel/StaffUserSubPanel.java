@@ -23,7 +23,7 @@ public class StaffUserSubPanel extends JPanel {
 
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
-    HeaderPanel headerPanel = new HeaderPanel(0);
+    CustomerHeaderPanel headerPanel = new CustomerHeaderPanel(0);
 
     public void changeUserLabelInHeaderPanel(String uID) {
         headerPanel.changeUserLabel(uID);
@@ -32,7 +32,7 @@ public class StaffUserSubPanel extends JPanel {
     // make list to display all product list
     public void setUserList() {
         listModel = new DefaultComboBoxModel<>();
-        listModel.addElement("New Product");
+        listModel.addElement("New User");
         for (int i = 0; i < uModel.getUserListSize(); i++) {
             User u = uModel.getUserList().get(i);
             String role;
