@@ -64,14 +64,45 @@ public class MainWindow extends JFrame {
         staffUserPanel.prepareComponents();
     }
 
+    public void resetLgAndSignUpPanel() {
+        this.remove(lgPanel);
+        this.remove(signUpPanel);
+        lgPanel = new LoginPanel();
+        signUpPanel = new SignUpPanel();
+        this.add(lgPanel, "Sign In");
+        this.add(signUpPanel, "Sign Up");
+        lgPanel.prepareComponents();
+        signUpPanel.prepareComponents();
+    }
+
+    public void resetCustomerPanel() {
+        resetLgAndSignUpPanel();
+        this.remove(customerPanel);
+        customerPanel = new CustomerPanel();
+        customerPanel.prepareComponents();
+        this.add(customerPanel, "Customer");
+    }
+
+    public void resetStaffPanel() {
+        resetLgAndSignUpPanel();
+        this.remove(staffPanel);
+        staffPanel = new StaffPanel();
+        staffPanel.prepareComponents();
+        this.add(staffPanel, "Staff");
+
+        this.remove(staffUserPanel);
+        staffUserPanel = new StaffUserPanel();
+        staffUserPanel.prepareComponents();
+        this.add(staffUserPanel, "StaffUser");
+    }
+
     public void setFrontScreenAndFocus(ScreenMode s) {
         if (this.screenMode == ScreenMode.LOGIN && s != ScreenMode.LOGIN) {
-            customerPanel.changeUserLabel(Main.uID);
-            staffPanel.changeUserLabel(Main.uID);
-        }
-
-        if (s != ScreenMode.LOGIN) {
-            // all panel should be refreshed.
+            if (Main.uModel.getUser(Main.uID).isMaster()) {
+                resetStaffPanel();
+            } else {
+                resetCustomerPanel();
+            }
         }
 
         this.screenMode = s;

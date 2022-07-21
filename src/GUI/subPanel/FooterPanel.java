@@ -1,6 +1,9 @@
 package GUI.subPanel;
 
 import javax.swing.*;
+
+import GUI.Main;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -41,7 +44,7 @@ public class FooterPanel extends JPanel {
                         JOptionPane.YES_NO_OPTION);
                 // if yes then sign out
                 if (confirm == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                    Main.mainWindow.dispose();
                 }
             }
         });

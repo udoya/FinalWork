@@ -119,10 +119,9 @@ public class UserModel {
             }
         }
         userList.remove(index);
-        System.out.println("User " + user.getName() + " is removed.");
     }
 
-    /** 
+    /**
      * Simply update user
      * Use only when you didn't change ID
      * 
@@ -132,7 +131,6 @@ public class UserModel {
         int index = checkID(user.getID());
         if (index >= 0) {
             userList.set(index, user);
-            System.out.println("User " + user.getName() + " is updated.");
         }
     }
 
@@ -141,9 +139,9 @@ public class UserModel {
      * Use when you want to change ID
      * *This method is necessary because you can't find a user if the ID is changed.
      * 
-     * @param user the user to update
-     * @param name new one
-     * @param id new one
+     * @param user     the user to update
+     * @param name     new one
+     * @param id       new one
      * @param password new one
      */
     public void updateUser(User user, String name, String id, String password) {
@@ -153,7 +151,6 @@ public class UserModel {
         user.setPassword(password);
         if (index >= 0) {
             userList.set(index, user);
-            System.out.println("User " + user.getName() + " is updated.");
         }
     }
 

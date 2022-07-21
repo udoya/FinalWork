@@ -57,7 +57,6 @@ public class StaffHeaderPanel extends JPanel {
         // show user name and role
         User user = Main.uModel.getUser(Main.uID);
         // print uid
-        System.out.println(Main.uID);
         userNameLabel = new JLabel("Staff:  " + user.getName());
 
         // Label setting fonts

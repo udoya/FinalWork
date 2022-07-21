@@ -17,6 +17,8 @@ public class LoginController {
      *         2: Successful login (customer)
      */
     public int login(String ID, String password) {
+        // test print
+        System.out.println("Try Login: " + ID);
         loginCount++;
         User user = uModel.getUser(ID);
         if (user == null) {

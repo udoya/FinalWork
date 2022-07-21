@@ -26,6 +26,7 @@ public class Customer extends User {
 
     /**
      * Get number of all borrowing product
+     * 
      * @return
      */
     public int getNumBorrowing() {
@@ -50,6 +51,7 @@ public class Customer extends User {
             return 0;
         }
     }
+
     // using name instead of product object
     public int getNumBorrowing(String productName) {
         if (borrowingList.containsKey(productName)) {
@@ -89,7 +91,6 @@ public class Customer extends User {
         return result;
     }
 
-
     /* Setter */
     /**
      * Add a product to the borrowing list
@@ -111,7 +112,6 @@ public class Customer extends User {
         }
 
         this.borrowingList.put(name, existNum + borrowNum);
-        System.out.println("borrowingList: " + name + " " + existNum + borrowNum);
     }
 
     /**
@@ -137,7 +137,6 @@ public class Customer extends User {
         // if no more borrowing, remove it from the list
         if (existNum - returnNum == 0) {
             borrowingList.remove(name);
-            System.out.println("BorrowingList: " + name + " removed because no more borrowing");
         }
     }
 }

@@ -44,7 +44,10 @@ public class LoginPanel extends JPanel {
                             JOptionPane.showMessageDialog(null, "Login Success\nStaff: " + name, "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                             Main.uID = ID;
+
+                            System.out.println("Login Success: STAFF1");
                             Main.mainWindow.setFrontScreenAndFocus(ScreenMode.STAFF);
+                            System.out.println("Login Success: STAFF");
                             break;
                         case 2:
                             name = LC.getName(ID);
@@ -52,6 +55,7 @@ public class LoginPanel extends JPanel {
                                     JOptionPane.INFORMATION_MESSAGE);
                             Main.uID = ID;
                             Main.mainWindow.setFrontScreenAndFocus(ScreenMode.CUSTOMER);
+                            System.out.println("Login Success: CUSTOMER");
                             break;
                     }
                     // Too many wrong attempts

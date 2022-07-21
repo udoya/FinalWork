@@ -24,10 +24,10 @@ public class CustomerBorrowingPanel extends JPanel {
     ProductModel pModel = Main.pModel;
     UserModel uModel = Main.uModel;
     String uID = Main.uID;
-    Customer c = (Customer) uModel.getUser(uID);
 
     // make list to display all product list
     public void setBorrowingList() {
+        Customer c = (Customer) uModel.getUser(uID);
         blistModel = new DefaultListModel<>();
         productIdList = new ArrayList<Integer>(); // make list to store index (of borrowing product) in pModel
 
@@ -40,6 +40,7 @@ public class CustomerBorrowingPanel extends JPanel {
 
     class ReturnBtnAction implements ActionListener {
         CustomerController CC = new CustomerController();
+        Customer c = (Customer) uModel.getUser(uID);
 
         @Override
         public void actionPerformed(ActionEvent e) {

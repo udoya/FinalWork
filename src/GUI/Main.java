@@ -31,8 +31,8 @@ public class Main {
             Customer c = (Customer) uModel.getUser(uID);
             Product p = pModel.getProduct("Wooden Chair");
             int bn = 3;
-            p.borrowThis(c, bn);
             c.borrowItem(p, bn);
+            p.borrowThis(c, bn);
 
         } catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block

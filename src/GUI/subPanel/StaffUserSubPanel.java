@@ -74,9 +74,6 @@ public class StaffUserSubPanel extends JPanel {
                 }
             }
 
-            // print test
-            System.out.println("info renewed?");
-
             rightPanel.add(infoPanel);
             rightPanel.add(listPanel);
             // repaint the right panel

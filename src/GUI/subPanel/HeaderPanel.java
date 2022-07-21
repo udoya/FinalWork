@@ -54,7 +54,6 @@ public class HeaderPanel extends JPanel {
         // show user name and role
         User user = Main.uModel.getUser(Main.uID);
         // print uid
-        System.out.println(Main.uID);
         userNameLabel = new JLabel("User Name: " + user.getName());
         userRoleLabel = new JLabel("Role: " + user.getRole());
 
