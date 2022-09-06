@@ -2,14 +2,14 @@
 
 - GUI ディレクトリ内の Main.java をコンパイルすれば動くはず。
 
-`javac .\GUI\Main.java`
+  `javac .\GUI\Main.java`
 
-`java GUI.Main`
+  `java GUI.Main`
 
 - もしくは GUI ディレクトリに移動してから
 
-`javac Main.java`
+  `javac Main.java`
 
-` java Main`
+  ` java Main`
 
 で起動するはず。
